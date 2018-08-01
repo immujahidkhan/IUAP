@@ -1,6 +1,7 @@
 <?php 
 
 session_start();
+include_once "../config.php";
 if(empty($_SESSION['id']))
 {
 ?>
@@ -93,7 +94,7 @@ if(empty($_SESSION['id']))
 
                 <div class="col-sm-7">
                     <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
+                    <div class="header-left " hidden>
                         <button class="search-trigger"><i class="fa fa-search"></i></button>
                         <div class="form-inline">
                             <form class="search-form">
@@ -135,8 +136,6 @@ if(empty($_SESSION['id']))
                         </a>
 
                         <div class="user-menu dropdown-menu">
-                              
-
                                 <a class="nav-link" href="../logout.php"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>

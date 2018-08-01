@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 31, 2018 at 10:29 AM
+-- Generation Time: Aug 01, 2018 at 04:44 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `admin_a_schedule` (
 --
 
 INSERT INTO `admin_a_schedule` (`id`, `p_id`, `user_id`, `admission_date`, `test_date`, `test_venue`, `test_time`, `merit_date`) VALUES
-(1, 1, 4, '2018-07-31', '2018-07-21', 'Faisalabad', '13:03', '2018-08-30'),
+(1, 1, 4, '2018-08-31', '2018-07-21', 'Faisalabad', '13:03', '2018-08-30'),
 (2, 3, 4, '2018-07-18', '2018-07-21', 'Faisalabad', '21:12', '2018-08-22'),
 (6, 7, 4, '2018-07-26', '2018-07-26', 'fsd', '21:09', '2018-07-31');
 
@@ -122,18 +122,21 @@ CREATE TABLE IF NOT EXISTS `admin_e_criteria` (
   `af_bachlor` varchar(255) NOT NULL,
   `af_master` varchar(255) NOT NULL,
   `af_mphil` varchar(255) NOT NULL,
+  `ahq` varchar(255) NOT NULL,
+  `aet` varchar(255) NOT NULL,
+  `ait` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `admin_e_criteria`
 --
 
-INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`, `type`, `sat`, `hec`, `nat`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`) VALUES
-(1, 1, 4, 'BA/BSC/BCOM/BBA', '60%', '60%', '', '', '', 'enteryTest', '60', '60', '60', '60%', '60%', '', '', ''),
-(2, 3, 4, 'BS/MSC', '60%', '60%', '60%', '60%', '60%', 'enteryTest', '60', '60', '60', '60%', '60%', '60%', '60%', '60%'),
-(4, 4, 4, 'BA/BSC/BCOM/BBA', '99', '999', '', '', '', 'openMerit', '', '', '', '999', '9', '', '', ''),
-(6, 7, 4, 'BS/MSC', '60', '60', '60', '', '', 'openMerit', '', '', '', '60', '60', '60', '', '');
+INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`, `type`, `sat`, `hec`, `nat`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`, `ahq`, `aet`, `ait`) VALUES
+(4, 4, 4, 'BA/BSC/BCOM/BBA', '99', '999', '', '', '', 'openMerit', '', '', '', '75', '12', '', '', '', '', '30', '5'),
+(7, 3, 4, 'PHD', '50%', '50%', '', '', '', 'openMerit', '', '', '', '75', '15', '', '', '', '', '30', '5'),
+(8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'openMerit', '', '', '', '', '', '', '', '', '', '30', '5'),
+(10, 7, 4, 'PHD', '45', '45', '45', '45', '45', 'openMerit', '', '', '', '75', '10', '5', '', '', '', '5', '5');
 
 -- --------------------------------------------------------
 
@@ -205,14 +208,15 @@ CREATE TABLE IF NOT EXISTS `contact` (
   `subject` text NOT NULL,
   `message` blob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `contact`
 --
 
 INSERT INTO `contact` (`id`, `name`, `email`, `phone`, `subject`, `message`) VALUES
-(1, 'kk', 'k@gmail.com', 'kk', 'k', 0x6b);
+(1, 'kk', 'k@gmail.com', 'kk', 'k', 0x6b),
+(2, 'Rimsha', 'rimsha@gmail.com', '03148789783', 'testing', 0x6d6573736167652068657265);
 
 -- --------------------------------------------------------
 
@@ -224,17 +228,22 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `p_id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
+  `cnic` varchar(255) NOT NULL,
   `marks` varchar(244) NOT NULL,
-  `by` varchar(255) NOT NULL,
+  `E_total` varchar(255) NOT NULL,
+  `interview_marks` varchar(255) NOT NULL,
+  `I_total` varchar(255) NOT NULL,
+  `by_` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `course_enrolled`
 --
 
-INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `marks`, `by`) VALUES
-(46, 7, 6, '10', '4');
+INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`) VALUES
+(49, 7, 6, '5320184998653', '90', '100', '90', '100', '4'),
+(53, 3, 6, '5320184998653', '90', '100', '90', '100', '4');
 
 -- --------------------------------------------------------
 
@@ -249,7 +258,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromNot` varchar(255) NOT NULL,
   `p_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `notification`
@@ -257,7 +266,23 @@ CREATE TABLE IF NOT EXISTS `notification` (
 
 INSERT INTO `notification` (`id`, `title`, `toNot`, `fromNot`, `p_id`) VALUES
 (17, 'Yours Entry Test Marks 000 are added.', '', '4', ''),
-(18, 'Yours Entry Test Marks 10 are added for program Physics', '6', '4', '7');
+(20, 'Yours Entry Test Marks 90 are added for program Physics', '6', '4', '7'),
+(21, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(22, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(23, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(24, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(26, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(27, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(28, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(29, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(30, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(31, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(32, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(33, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(34, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(35, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(36, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
+(37, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3');
 
 -- --------------------------------------------------------
 
@@ -273,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
   `p_status` varchar(255) NOT NULL,
   `fees` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `programs`
@@ -282,7 +307,8 @@ CREATE TABLE IF NOT EXISTS `programs` (
 INSERT INTO `programs` (`id`, `title`, `user_id`, `status`, `p_status`, `fees`) VALUES
 (1, 'Bs Computer Science', 4, 0, 'Completed', '90000'),
 (3, 'Bs Information technology', 4, 1, 'Completed', '1000'),
-(7, 'Physics', 4, 1, 'Completed', '89000');
+(7, 'Physics', 4, 1, 'Completed', '89000'),
+(8, 'Bs Chemistry', 4, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -369,15 +395,14 @@ CREATE TABLE IF NOT EXISTS `student_e_detail` (
   `fa_obtained` varchar(255) NOT NULL,
   `ssc_obtained` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `student_e_detail`
 --
 
 INSERT INTO `student_e_detail` (`id`, `user_id`, `degree`, `ms_pass_year`, `bs_pass_year`, `ba_pass_year`, `fa_pass_year`, `ssc_pass_year`, `ms_uni_board`, `bs_uni_board`, `ba_uni_board`, `fa_uni_board`, `ssc_uni_board`, `ms_sub`, `bs_sub`, `ba_sub`, `fa_sub`, `ssc_sub`, `ms_max_marks`, `bs_max_marks`, `ba_max_marks`, `fa_max_marks`, `ssc_max_marks`, `ms_obtained`, `bs_obtained`, `ba_obtained`, `fa_obtained`, `ssc_obtained`) VALUES
-(2, 1, 'BS/MSC', '2014', '2010', '2010', '2011', '2011', 'ooo', 'o', 'o', 'Lahore', 'Lahore', 'o', 'oo', 'o', 'o', 'o', 'oo', 'oo', 'o', 'o', 'o', 'o', 'o', 'o', 'o', 'o'),
-(3, 6, 'BS/MSC', '2010', '2018', '2014', '2013', '2011', 'mm', 'bs Gcuf', 'ba gcuf', 'Hyderabad', 'Sahiwal', 'm', 'bs Computer Science', 'ba computer Science', 'fa subject', 'ssc subject', 'mm', '1100', '633', '1100', '850', 'm', '633', '1100', '850', '633');
+(4, 6, 'BS/MSC', '2012', '2010', '2011', '2010', '2010', 'gcuf', 'gcuf', 'gcuf', 'Bahawalpur', 'Bahawalpur', 'english', 'english', 'english', 'bscs', 'english', '1100', '4', '1100', '1100', '850', '644', '3.4', '', '633', '629');
 
 -- --------------------------------------------------------
 
@@ -406,7 +431,7 @@ CREATE TABLE IF NOT EXISTS `student_p_detail` (
 --
 
 INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `cnic`, `mobile`, `email`) VALUES
-(1, 6, 'logo.png', 'Student', 'saleem', '7-JAN-1994', 'Male', 'Pakistani', 'Faisalabad', '4220184998653', '03148617631', '03148617631');
+(1, 6, 'logo.png', 'Student', 'saleem', '7-JAN-1994', 'Male', 'Pakistani', 'Faisalabad', '5320184998653', '03148617631', '03148617631');
 
 -- --------------------------------------------------------
 

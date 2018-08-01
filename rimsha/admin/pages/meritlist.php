@@ -18,7 +18,7 @@ if(empty($_SESSION['id']))
 		<script> window.location.href="logout.php";</script>
 		<?php 	
 		}
-		
+
 		
 	if(isset($_POST['testNO']))
 	{
@@ -104,7 +104,7 @@ include "assets/main_header.php";
 	 $dataP1=$program_query->fetch(PDO::FETCH_ASSOC);
 	 ?>
 	 <tr>
-	 <td><a href="enroll.php?pId=<?php echo $Datacourse_query['p_id'];?>"><?php echo $dataP1['title'];?></a></td>
+	 <td><a href="meritlist.php?pId=<?php echo $Datacourse_query['p_id'];?>"><?php echo $dataP1['title'];?></a></td>
 	 </tr>
 	 <?php
 	 }
@@ -129,8 +129,8 @@ include "assets/main_header.php";
         <th>Student Name</th>
 		<th>Student Email</th>
 		<th>Student CNIC</th>
-		<th>Enter Entry Test Marks</th>
-		<th>Interview Test Marks</th>
+		<th>Domicile</th>
+		<th>Aggregate</th>
       </tr>
     </thead>
     <tbody>
@@ -141,6 +141,9 @@ include "assets/main_header.php";
 									
 									$queryP= $class->fetchdata(" select * from admin_p_detail where p_id='$data_course_enrolled_query[p_id]'");
 									$dataP=$queryP->fetch(PDO::FETCH_ASSOC);
+									
+									$SEquery= $class->fetchdata("SELECT * FROM `student_e_detail` where user_id='$data_course_enrolled_query[user_id]'");
+									$SEDataP=$SEquery->fetch(PDO::FETCH_ASSOC);
 									
 									$Userquery= $class->fetchdata(" select * from users where id='$data_course_enrolled_query[user_id]'");
 									$Userdata=$Userquery->fetch(PDO::FETCH_ASSOC);
@@ -153,22 +156,21 @@ include "assets/main_header.php";
                                         <td><?php echo $Userdata['name'];?></td>
                                         <td><?php echo $Userdata['email'];?></td>
 										<td><?php echo $CninData['cnic'];?></td>
-                                       <td>
-									   <form method="post" action="enroll.php">
-									   <input type="text" 	name="testNO" required 	value="<?php echo $data_course_enrolled_query['marks'];?>" placeholder="Enter Marks Here"/>
-									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
-									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
-									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
-									   </form>
-									   </td>
+										<td><?php echo $CninData['domicile'];?></td>
 									    <td>
-									   <form method="post" action="enroll.php">
-									   <input type="text" 	name="interviewNO" required 	value="<?php echo $data_course_enrolled_query['interview_marks'];?>" placeholder="Enter Marks Here"/>
-									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
-									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
-									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
-									   </form>
-									   </td>
+										<?php
+					$queryMerit= $class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$data_course_enrolled_query[p_id]'");
+					$MeritData=$queryMerit->fetch(PDO::FETCH_ASSOC);
+					echo "ssc".$MeritData['af_matric'];
+					echo "fsc".$MeritData['af_inter'];
+					echo "bs".$MeritData['af_bachlor'];
+					echo $MeritData['af_master'];
+					echo $MeritData['af_mphil'];
+					echo $MeritData['ahq'];
+					echo $MeritData['aet'];
+					echo $MeritData['ait']."<br>";
+					echo ($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']);
+										?></td>
                                     </tr>
 									<?php
 									}

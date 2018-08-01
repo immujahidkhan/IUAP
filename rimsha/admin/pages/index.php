@@ -13,7 +13,7 @@ if(empty($_SESSION['id']))
 
 		$query= $class->fetchdata(" select * from users where id='$user_id'");
 		$data=$query->fetch(PDO::FETCH_ASSOC);
-		if($data['role']=="student")
+		if($data['role']=="student" || $data['role']=="superadmin")
 		{
 		?>
 		<script> window.location.href="logout.php";</script>

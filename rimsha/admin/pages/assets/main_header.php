@@ -56,7 +56,8 @@
 <div class="container">
 <div class="btn-group btn-group-justified">
   <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#ModelName" aria-hidden="true">Add New Program</a>
-   <a href="enroll.php" class="btn btn-primary">Enroll Students</a>
+  <a href="enroll.php" class="btn btn-primary">Enroll Students</a>
+  <a href="meritlist.php" class="btn btn-primary">Merit list</a>
   <a href="notifications.php" class="btn btn-primary">Notification <span class="badge">
   <?php
   $notQuery= $class->fetchdata("SELECT * FROM `notification` WHERE `toNot`='$user_id'");

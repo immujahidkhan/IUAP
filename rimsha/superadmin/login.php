@@ -1,6 +1,6 @@
 <?php
 //error_reporting(0);
-//session_start();
+session_start();
 if(!empty($_SESSION['id']))
 {
 ?>
@@ -23,7 +23,7 @@ if($class->doLogin($email,$password))
 		
 		$class->redirect("index.php");		
 		}else{
-		$error = "You are not admin";
+		$error = "You are not a Super Admin";
 		session_destroy();
 		unset($_SESSION['id']);
 		}
@@ -78,6 +78,7 @@ if($class->doLogin($email,$password))
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
+				<h3 class="text-center"><a href="../index.php">Back To Home</a></h3>
                     <div class="panel-heading">
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>

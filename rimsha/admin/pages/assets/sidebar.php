@@ -45,6 +45,9 @@ if($program->rowCount()==0)
                         <li>
                             <a href="eligibility_criteria.php?pId=<?php echo $pId;?>">Eligibility Criteria </a>
                         </li>
+						 <li>
+                            <a href="aggregate.php?pId=<?php echo $pId;?>">Aggregate Formula </a>
+                        </li>
                      
 						  <li>
                             <a href="admission_schedule.php?pId=<?php echo $pId;?>">Admission Schedule</a>

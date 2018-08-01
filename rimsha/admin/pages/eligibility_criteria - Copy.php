@@ -80,7 +80,11 @@ function valueselect()
 	  var bsc = document.getElementById("bsc");
 	  var msc = document.getElementById("msc");
 	  var mphill = document.getElementById("mphill");
-	
+	  var Assc = document.getElementById("Assc");
+	  var Ahssc = document.getElementById("Ahssc");
+	  var Absc = document.getElementById("Absc");
+	  var Amsc = document.getElementById("Amsc");
+	  var Amphill = document.getElementById("Amphill");
 	  //document.getElementById("myP").style.display = "none";
     //document.getElementById("mphill").innerHTML = "You selected: " + x;
 	if(x=="PHD")
@@ -89,12 +93,17 @@ function valueselect()
 		bsc.style.display = "block";
 		msc.style.display = "block";
 		mphill.style.display = "block";
-		
+		Absc.style.display = "block";
+		Amsc.style.display = "block";
+		Amphill.style.display = "block";
 	}
 	
 	if(x=="MS/MPHILL")																					
 	{
 		//alert("ok");
+		Absc.style.display = "block";
+		Amsc.style.display = "block";
+		Amphill.style.display = "none";
 		
 		bsc.style.display = "block";
 		msc.style.display = "block";
@@ -103,21 +112,26 @@ function valueselect()
 	
 	if(x=="BS/MSC")
 	{
-	    
+	    Amphill.style.display = "none";
+		Amsc.style.display = "none";
 		
 		mphill.style.display = "none";
 		msc.style.display = "none";
 	}
 	if(x=="BS/MSC")
 	{
-		
+		Absc.style.display = "block";
 	    bsc.style.display = "block";
-		
+		Amphill.style.display = "none";
+		Amsc.style.display = "none";
 	    mphill.style.display = "none";
 		msc.style.display = "none";
 	}
 	if(x=="BA/BSC/BCOM/BBA")
 	{
+		Absc.style.display = "none";
+		Amsc.style.display = "none";
+		Amphill.style.display = "none";
 		
 		bsc.style.display = "none";
 		msc.style.display = "none";
@@ -156,12 +170,18 @@ $sat= $_POST['sat'];
 $hec= $_POST['hec'];
 $nat= $_POST['nat'];
 
+$af_matric= $_POST['af_matric'];
+$af_inter= $_POST['af_inter'];
+$af_bachlor= $_POST['af_bachlor'];
+$af_master= $_POST['af_master'];
+$af_mphil= $_POST['af_mphil'];
+
 		
-$query=$class->insert("INSERT INTO `admin_e_criteria` (`p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`,`type`, `sat`, `hec`, `nat`) VALUES ('$p_id','$user_id','$program','$matric_marks','$inter_marks','$bachlor_marks','$master_marks','$mphil_marks','$merit','$sat','$hec','$nat')");
+$query=$class->insert("INSERT INTO `admin_e_criteria` (`p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`,`type`, `sat`, `hec`, `nat`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`) VALUES ('$p_id','$user_id','$program','$matric_marks','$inter_marks','$bachlor_marks','$master_marks','$mphil_marks','$merit','$sat','$hec','$nat','$af_matric','$af_inter','$af_bachlor','$af_master','$af_mphil')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
-			 <script> window.location.href="aggregate.php?pId=<?php echo $p_id ;?>";</script>
+			 <script> window.location.href="admission_schedule.php?pId=<?php echo $p_id ;?>";</script>
 			<?php
 			}
 			else{
@@ -183,14 +203,19 @@ $sat= $_POST['sat'];
 $hec= $_POST['hec'];
 $nat= $_POST['nat'];
 
+$af_matric= $_POST['af_matric'];
+$af_inter= $_POST['af_inter'];
+$af_bachlor= $_POST['af_bachlor'];
+$af_master= $_POST['af_master'];
+$af_mphil= $_POST['af_mphil'];
 
 		
-$query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`matric_marks`='$matric_marks', `inter_marks`='$inter_marks', `bachlor_marks` = '$bachlor_marks', `master_marks` = '$master_marks', `mphil_marks` = '$mphil_marks',`type` = '$merit', `sat` = '$sat', `hec` = '$hec', `nat` = '$nat' where `p_id` = '$p_id' and `user_id`='$user_id'");
+$query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`matric_marks`='$matric_marks', `inter_marks`='$inter_marks', `bachlor_marks` = '$bachlor_marks', `master_marks` = '$master_marks', `mphil_marks` = '$mphil_marks',`type` = '$merit', `sat` = '$sat', `hec` = '$hec', `nat` = '$nat', `af_matric` = '$af_matric', `af_inter` = '$af_inter', `af_bachlor` = '$af_bachlor', `af_master` = '$af_master', `af_mphil` = '$af_mphil' where `p_id` = '$p_id' and `user_id`='$user_id'");
 			
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
-			 <script> window.location.href="aggregate.php?pId=<?php echo $p_id ;?>";</script>
+			 <script> window.location.href="admission_schedule.php?pId=<?php echo $p_id ;?>";</script>
 			<?php
 			}
 			else{
@@ -328,7 +353,65 @@ $query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`ma
     </div>
   </div>
 </div> 
-   
+    <h3>AGGREGATE FORMULA</h3>
+   <div class="form-group" id="Assc" class="ssc">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>Matric/O-level Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_matric'];?>"  name="af_matric" required placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Assc');"><span class="fa fa-times-circle-o"></span></a>	
+  </div>
+   <div class="form-group" id="Ahssc" class="hssc">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>Inter/Fsc/A-level/DAE/DCOM/ICOM/ICS/FA Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_inter'];?>"  name="af_inter" required placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Ahssc');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  
+   <div class="form-group" id="Absc" class="bsc">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>BA/BSC/BCOM/BBA Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_bachlor'];?>"  name="af_bachlor"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Absc');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  <div class="form-group" id="Amsc" class="msc">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>BS/MSC Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_master'];?>"  name="af_master"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Amsc');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+   <div class="form-group" id="Amphill" class="mphill">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>MPHILL/MS Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_mphil'];?>"  name="af_mphil"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Amphill');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  <div class="form-group" id="Ahq" class="mphill">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>Hafiz e Quran Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_mphil'];?>"  name="af_mphil"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Ahq');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+   <div class="form-group" id="Aet" class="mphill">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>Entry Test Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_mphil'];?>"  name="af_mphil"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Aet');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+   <div class="form-group" id="Ait" class="mphill">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>Interview Weightage:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" value="<?php echo $Details['af_mphil'];?>"  name="af_mphil"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('Ait');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+ 
 
   
   <div class="form-group"> 
@@ -355,7 +438,15 @@ $query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`ma
 
 </div>
 </div>      
- 
+<script>
+function hideFun(myval)
+{
+	if(myval=='Assc')
+	{
+	document.getElementById(myval).style.display = "none";
+	}
+}
+</script>  
 <?php
 require_once "assets/footer.php";
 ?>

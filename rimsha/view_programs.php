@@ -26,6 +26,7 @@ $student_e_detail=$AdmissionD->fetch(PDO::FETCH_ASSOC);
 $JoinQuery = $class->fetchdata("SELECT programs.*, admin_about.*, admin_p_detail.*, admin_e_criteria.*, admin_a_schedule.*, admin_criteria_list.*, admin_late_admission.* FROM programs left join admin_about ON programs.id = admin_about.p_id left join admin_p_detail ON programs.id = admin_p_detail.p_id left join admin_e_criteria ON programs.id = admin_e_criteria.p_id left join admin_a_schedule ON programs.id = admin_a_schedule.p_id left join admin_criteria_list ON programs.id = admin_criteria_list.p_id left join admin_late_admission ON programs.id = admin_late_admission.p_id where programs.id = '$p_id'");
 $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
 
+							
 }
 ?>
 <!doctype html>
@@ -174,6 +175,24 @@ $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
 							<button id="myBtn" onClick="applied();" class="btn btn-info"> Apply for Program</button>
 							<?php
 							}else{
+							if (new DateTime() >= new DateTime($JoinResult['admission_date'])) {
+							# current time is greater than 2010-05-15 16:00:00 and thus in the past
+							?>
+							
+							<div class="col-md-6">
+							<button  class="btn btn-danger"> Admission Closed</button>
+							</div>
+							
+							<?php 
+							}else
+							{
+							$student_e_detail_q=$class->fetchdata("SELECT * FROM `student_e_detail` where user_id = '$_SESSION[id]'");
+							if($student_e_detail_q->rowCount()==0)
+							{?>
+						<button onClick="checkData();" class="btn btn-info"> Apply for Program</button>
+							<?php
+							}else{
+							
 							$pName=$class->fetchdata("SELECT * FROM `course_enrolled` where p_id = '$p_id' and user_id = '$_SESSION[id]'");
 							$NameD=$pName->fetch(PDO::FETCH_ASSOC);
 							if($JoinResult['user_id']==$_SESSION['id'])
@@ -208,6 +227,8 @@ $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
 						    <a href="#" class="btn btn-info"> Can't Apply for Program</a>
 							<?php
 								}
+							}
+							}
 							}
 							}
 							}
@@ -347,6 +368,7 @@ $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
 						</div>
 						<br>
 						<hr>
+						<div hidden>
 						<h3>AGGREGATE FORMULA</h3>
 						<hr> 
 						 <?php
@@ -412,6 +434,7 @@ $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
 						 <?php
 						 }
 						 ?>
+						</div>
 						</div>
 					</div>
                 </div>
@@ -557,6 +580,11 @@ $JoinResult=$JoinQuery->fetch(PDO::FETCH_ASSOC);
   
 
 <script>
+function checkData()
+{
+alert("Please Fill Your Education Data then try again")
+}
+
 function applied()
 {
 <?php 
