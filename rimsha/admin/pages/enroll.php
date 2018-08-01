@@ -50,7 +50,36 @@ if(empty($_SESSION['id']))
 	$p_name = "Yours Interview Marks ".$_POST['interviewNO']." are added for program ".$title_p_name;
 	$class->insert("UPDATE `notification` SET `title`='$p_name',`toNot`='$_POST[user_id]',`fromNot`='$user_id' where `p_id`='$_POST[p_id]'");	
 	}
-	
+	}
+	if(isset($_POST['TotalsEntryTest']))
+	{
+	$title_p_name = $_POST['p_name'];
+	$query=$class->insert("UPDATE `course_enrolled` SET `E_total`='$_POST[TotalsEntryTest]' WHERE p_id = $_POST[p_id]");
+	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
+
+	if($checkD->rowCount()==0)
+	{
+	$p_name = "Yours Interview Marks ".$_POST['TotalsEntryTest']." are added for program ".$title_p_name;
+    $class->insert("INSERT INTO `notification`(`title`,`fromNot`,`toNot`,`p_id`) VALUES('$p_name','$user_id','$_POST[user_id]','$_POST[p_id]')");
+	}else{
+	$p_name = "Yours Interview Marks ".$_POST['TotalsEntryTest']." are added for program ".$title_p_name;
+	$class->insert("UPDATE `notification` SET `title`='$p_name',`toNot`='$_POST[user_id]',`fromNot`='$user_id' where `p_id`='$_POST[p_id]'");	
+	}
+	}
+	if(isset($_POST['TotalsInterviewTest']))
+	{
+	$title_p_name = $_POST['p_name'];
+	$query=$class->insert("UPDATE `course_enrolled` SET `I_total`='$_POST[TotalsInterviewTest]' WHERE p_id = $_POST[p_id]");
+	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
+
+	if($checkD->rowCount()==0)
+	{
+	$p_name = "Yours Interview Marks ".$_POST['TotalsInterviewTest']." are added for program ".$title_p_name;
+    $class->insert("INSERT INTO `notification`(`title`,`fromNot`,`toNot`,`p_id`) VALUES('$p_name','$user_id','$_POST[user_id]','$_POST[p_id]')");
+	}else{
+	$p_name = "Yours Interview Marks ".$_POST['TotalsInterviewTest']." are added for program ".$title_p_name;
+	$class->insert("UPDATE `notification` SET `title`='$p_name',`toNot`='$_POST[user_id]',`fromNot`='$user_id' where `p_id`='$_POST[p_id]'");	
+	}
 	}
 
 if(isset($_POST['add_done']))
@@ -154,20 +183,44 @@ include "assets/main_header.php";
                                         <td><?php echo $Userdata['email'];?></td>
 										<td><?php echo $CninData['cnic'];?></td>
                                        <td>
-									   <form method="post" action="enroll.php">
-									   <input type="text" 	name="testNO" required 	value="<?php echo $data_course_enrolled_query['marks'];?>" placeholder="Enter Marks Here"/>
+										<div class="form-group row">
+										<div class="col-xs-6">
+										 <form method="post" action="enroll.php">
+									   <input type="text" class="form-control"	name="testNO" required 	value="<?php echo $data_course_enrolled_query['marks'];?>" placeholder="Obtained Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
 									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
 									   </form>
+										</div>
+										<div class="col-xs-6">
+										 <form method="post" action="enroll.php">
+									   <input type="text" class="form-control"	name="TotalsEntryTest" required 	value="<?php echo $data_course_enrolled_query['E_total'];?>" placeholder="Totals Marks"/>
+									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
+									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
+									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
+									   </form>
+										</div>
+										</div>
 									   </td>
-									    <td>
-									   <form method="post" action="enroll.php">
-									   <input type="text" 	name="interviewNO" required 	value="<?php echo $data_course_enrolled_query['interview_marks'];?>" placeholder="Enter Marks Here"/>
+									  <td>
+										<div class="form-group row">
+										<div class="col-xs-6">
+										 <form method="post" action="enroll.php">
+									   <input type="text" class="form-control"	name="interviewNO" required 	value="<?php echo $data_course_enrolled_query['interview_marks'];?>" placeholder="Obtained Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
 									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
 									   </form>
+										</div>
+										<div class="col-xs-6">
+										 <form method="post" action="enroll.php">
+									   <input type="text" class="form-control"	name="TotalsInterviewTest" required 	value="<?php echo $data_course_enrolled_query['I_total'];?>" placeholder="Totals Marks"/>
+									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
+									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
+									   <input type="hidden" name="p_name" 	value="<?php echo $dataP['uni_program'];?>"/>
+									   </form>
+										</div>
+										</div>
 									   </td>
                                     </tr>
 									<?php

@@ -161,15 +161,15 @@ include "assets/main_header.php";
 										<?php
 					$queryMerit= $class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$data_course_enrolled_query[p_id]'");
 					$MeritData=$queryMerit->fetch(PDO::FETCH_ASSOC);
-					echo "ssc".$MeritData['af_matric'];
+					/*echo "ssc".$MeritData['af_matric'];
 					echo "fsc".$MeritData['af_inter'];
 					echo "bs".$MeritData['af_bachlor'];
 					echo $MeritData['af_master'];
 					echo $MeritData['af_mphil'];
 					echo $MeritData['ahq'];
 					echo $MeritData['aet'];
-					echo $MeritData['ait']."<br>";
-					echo ($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']);
+					echo $MeritData['ait']."<br>";*/
+					echo (round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
 										?></td>
                                     </tr>
 									<?php
