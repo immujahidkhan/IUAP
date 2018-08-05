@@ -5,7 +5,7 @@ require_once "assets/sidebar.php";
 $programD=$class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$p_id' and user_id='$user_id'");
 $Details=$programD->fetch(PDO::FETCH_ASSOC);
 if($Details['program']=="PHD")
-{	
+{
 ?>
 <style>
 #bsc,#msc,#mphill,#Absc,#Amsc,#Amphill{
@@ -94,7 +94,6 @@ function valueselect()
 	
 	if(x=="MS/MPHILL")																					
 	{
-		//alert("ok");
 		
 		bsc.style.display = "block";
 		msc.style.display = "block";
@@ -112,7 +111,6 @@ function valueselect()
 	{
 		
 	    bsc.style.display = "block";
-		
 	    mphill.style.display = "none";
 		msc.style.display = "none";
 	}
@@ -155,9 +153,9 @@ $merit= $_POST['merit'];
 $sat= $_POST['sat'];
 $hec= $_POST['hec'];
 $nat= $_POST['nat'];
-
+$nts= $_POST['nts'];
 		
-$query=$class->insert("INSERT INTO `admin_e_criteria` (`p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`,`type`, `sat`, `hec`, `nat`) VALUES ('$p_id','$user_id','$program','$matric_marks','$inter_marks','$bachlor_marks','$master_marks','$mphil_marks','$merit','$sat','$hec','$nat')");
+$query=$class->insert("INSERT INTO `admin_e_criteria` (`p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`,`type`, `sat`, `hec`, `nat` ,`nts`) VALUES ('$p_id','$user_id','$program','$matric_marks','$inter_marks','$bachlor_marks','$master_marks','$mphil_marks','$merit','$sat','$hec','$nat','$nts')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -182,10 +180,10 @@ $merit= $_POST['merit'];
 $sat= $_POST['sat'];
 $hec= $_POST['hec'];
 $nat= $_POST['nat'];
-
+$nts= $_POST['nts'];
 
 		
-$query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`matric_marks`='$matric_marks', `inter_marks`='$inter_marks', `bachlor_marks` = '$bachlor_marks', `master_marks` = '$master_marks', `mphil_marks` = '$mphil_marks',`type` = '$merit', `sat` = '$sat', `hec` = '$hec', `nat` = '$nat' where `p_id` = '$p_id' and `user_id`='$user_id'");
+$query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`matric_marks`='$matric_marks', `inter_marks`='$inter_marks', `bachlor_marks` = '$bachlor_marks', `master_marks` = '$master_marks', `mphil_marks` = '$mphil_marks',`type` = '$merit', `sat` = '$sat', `hec` = '$hec', `nat` = '$nat'  , `nts` = '$nts' where `p_id` = '$p_id' and `user_id`='$user_id'");
 			
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
@@ -311,21 +309,31 @@ $query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`ma
      <div class="form-group" id="sat">
     <label class="control-label col-sm-5" for="email"><span class="star">*</span>SAT:</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" value="<?php echo $Details['sat'];?>"  name="sat"  placeholder="">
+      <input type="text" class="form-control" id="tsat" value="<?php echo $Details['sat'];?>"  name="sat"  placeholder="">
     </div>
+	<a href="#" onclick="hideFun('sat');"><span class="fa fa-times-circle-o"></span></a>
   </div>
   
    <div class="form-group" id="hec">
     <label class="control-label col-sm-5" for="email"><span class="star">*</span>HEC:</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" name="hec" value="<?php echo $Details['hec'];?>"   placeholder="">
+      <input type="text" class="form-control" name="hec" id="thec" value="<?php echo $Details['hec'];?>"   placeholder="">
     </div>
+	<a href="#" onclick="hideFun('hec');"><span class="fa fa-times-circle-o"></span></a>
   </div>
    <div class="form-group" id="nat">
     <label class="control-label col-sm-5" for="email"><span class="star">*</span>NAT:</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" value="<?php echo $Details['nat'];?>"  name="nat"  placeholder="">
+      <input type="text" class="form-control" id="tnat" value="<?php echo $Details['nat'];?>"  name="nat"  placeholder="">
     </div>
+	<a href="#" onclick="hideFun('nat');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+   <div class="form-group" id="nts">
+    <label class="control-label col-sm-5" for="email"><span class="star">*</span>NTS:</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="tnts" value="<?php echo $Details['nts'];?>"  name="nts"  placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('nts');"><span class="fa fa-times-circle-o"></span></a>
   </div>
 </div> 
    
@@ -355,7 +363,28 @@ $query=$class->insert("UPDATE `admin_e_criteria` SET `program` = '$program' ,`ma
 
 </div>
 </div>      
- 
+<script>
+function hideFun(myval)
+{
+	if(myval=='hec')
+	{
+	document.getElementById("thec").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='nat')
+	{
+	document.getElementById("tnat").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='sat')
+	{
+	document.getElementById("tsat").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='nts')
+	{
+	document.getElementById("tnts").value = "";
+	document.getElementById(myval).style.display = "none";
+	}
+}
+</script> 
 <?php
 require_once "assets/footer.php";
 ?>

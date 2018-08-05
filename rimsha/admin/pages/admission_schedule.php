@@ -1,8 +1,14 @@
 <?php
 require_once "assets/header.php";
 require_once "assets/sidebar.php";
+error_reporting(0);
 $programD=$class->fetchdata("SELECT * FROM `admin_a_schedule` where p_id='$p_id' and user_id='$user_id'");
 $Details=$programD->fetch(PDO::FETCH_ASSOC);
+
+
+$admin_e_criteriaD=$class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$p_id' and user_id='$user_id'");
+$admin_e_criteria=$admin_e_criteriaD->fetch(PDO::FETCH_ASSOC);
+
 if(isset($_POST['done']))
 {
 	
@@ -64,6 +70,10 @@ $query=$class->insert("UPDATE `admin_a_schedule` SET `admission_date` = '$admiss
       <input type="date" class="form-control" value="<?php echo $Details['admission_date'];?>" name="admission_date" required placeholder="">
     </div>
   </div>
+  <?php
+  if($admin_e_criteria['type']=="enteryTest")
+  {
+  ?>
    <div class="form-group" id="hssc" class="hssc">
     <label class="control-label col-sm-5" for="email"><span class="star">*</span>Entry Test Last Date:</label>
     <div class="col-sm-4">
@@ -83,6 +93,9 @@ $query=$class->insert("UPDATE `admin_a_schedule` SET `admission_date` = '$admiss
       <input type="time" class="form-control" value="<?php echo $Details['test_time'];?>" name="test_time" required placeholder="">
     </div>
   </div>
+  <?php
+  }
+  ?>
    <div class="form-group" id="mphill" class="mphill">
     <label class="control-label col-sm-5" for="email"><span class="star">*</span>Merit List Display Date:</label>
     <div class="col-sm-4">

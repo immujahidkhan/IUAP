@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 01, 2018 at 04:44 PM
+-- Generation Time: Aug 05, 2018 at 01:05 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `admin_about` (
   `user_id` int(255) NOT NULL,
   `about` blob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `admin_about`
@@ -42,7 +42,8 @@ INSERT INTO `admin_about` (`id`, `p_id`, `user_id`, `about`) VALUES
 (1, 1, 4, 0x496e2047637566207765206f666665727320427320436f6d707574657220536369656e6365),
 (2, 3, 4, 0x41626f7574),
 (3, 4, 4, 0x686868),
-(6, 7, 4, 0x61626f7574);
+(6, 7, 4, 0x61626f7574),
+(8, 9, 4, 0x53454c454354202a2046524f4d206061646d696e5f61626f75746020574845524520705f6964203d2039);
 
 -- --------------------------------------------------------
 
@@ -69,7 +70,7 @@ CREATE TABLE IF NOT EXISTS `admin_a_schedule` (
 INSERT INTO `admin_a_schedule` (`id`, `p_id`, `user_id`, `admission_date`, `test_date`, `test_venue`, `test_time`, `merit_date`) VALUES
 (1, 1, 4, '2018-08-31', '2018-07-21', 'Faisalabad', '13:03', '2018-08-30'),
 (2, 3, 4, '2018-07-18', '2018-07-21', 'Faisalabad', '21:12', '2018-08-22'),
-(6, 7, 4, '2018-07-26', '2018-07-26', 'fsd', '21:09', '2018-07-31');
+(6, 7, 4, '2018-08-26', '', '', '', '2018-07-31');
 
 -- --------------------------------------------------------
 
@@ -85,6 +86,12 @@ CREATE TABLE IF NOT EXISTS `admin_criteria_list` (
   `quota` varchar(255) NOT NULL,
   `punjab` varchar(255) NOT NULL,
   `sindh` varchar(255) NOT NULL,
+  `kpk` varchar(255) NOT NULL,
+  `bal` varchar(255) NOT NULL,
+  `fed` varchar(255) NOT NULL,
+  `fata` varchar(255) NOT NULL,
+  `sports` varchar(255) NOT NULL,
+  `handicaped` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
@@ -92,10 +99,10 @@ CREATE TABLE IF NOT EXISTS `admin_criteria_list` (
 -- Dumping data for table `admin_criteria_list`
 --
 
-INSERT INTO `admin_criteria_list` (`id`, `p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh`) VALUES
-(1, 1, 4, '30', 'Quota System', '15', '15'),
-(2, 3, 4, '30', 'Quota System', '15', '15'),
-(6, 7, 4, '90', 'No Quota System', '', '');
+INSERT INTO `admin_criteria_list` (`id`, `p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh`, `kpk`, `bal`, `fed`, `fata`, `sports`, `handicaped`) VALUES
+(1, 1, 4, '30', 'Quota System', '15', '15', '', '', '', '', '', ''),
+(2, 3, 4, '30', 'Quota System', '15', '15', '', '', '', '', '', ''),
+(6, 7, 4, '90', 'Quota System', '', '', '', '', '9', '9', '9', '9');
 
 -- --------------------------------------------------------
 
@@ -117,6 +124,7 @@ CREATE TABLE IF NOT EXISTS `admin_e_criteria` (
   `sat` varchar(255) NOT NULL,
   `hec` varchar(255) NOT NULL,
   `nat` varchar(255) NOT NULL,
+  `nts` varchar(255) NOT NULL,
   `af_matric` varchar(255) NOT NULL,
   `af_inter` varchar(255) NOT NULL,
   `af_bachlor` varchar(255) NOT NULL,
@@ -132,11 +140,11 @@ CREATE TABLE IF NOT EXISTS `admin_e_criteria` (
 -- Dumping data for table `admin_e_criteria`
 --
 
-INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`, `type`, `sat`, `hec`, `nat`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`, `ahq`, `aet`, `ait`) VALUES
-(4, 4, 4, 'BA/BSC/BCOM/BBA', '99', '999', '', '', '', 'openMerit', '', '', '', '75', '12', '', '', '', '', '30', '5'),
-(7, 3, 4, 'PHD', '50%', '50%', '', '', '', 'openMerit', '', '', '', '75', '15', '', '', '', '', '30', '5'),
-(8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'openMerit', '', '', '', '', '', '', '', '', '', '30', '5'),
-(10, 7, 4, 'PHD', '45', '45', '45', '45', '45', 'openMerit', '', '', '', '75', '10', '5', '', '', '', '5', '5');
+INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`, `type`, `sat`, `hec`, `nat`, `nts`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`, `ahq`, `aet`, `ait`) VALUES
+(4, 4, 4, 'BA/BSC/BCOM/BBA', '99', '999', '', '', '', 'openMerit', '', '', '', '', '75', '12', '', '', '', '', '30', '5'),
+(7, 3, 4, 'PHD', '50%', '50%', '', '', '', 'openMerit', '', '', '', '', '75', '15', '', '', '', '', '30', '5'),
+(8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'openMerit', '', '', '', '', '', '', '', '', '', '', '30', '5'),
+(10, 7, 4, 'PHD', '45', '45', '45', '45', '45', 'openMerit', '55', '', '', '555', '75', '10', '5', '', '', '', '5', '5');
 
 -- --------------------------------------------------------
 
@@ -183,7 +191,7 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
   `img` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `admin_p_detail`
@@ -192,7 +200,8 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
 INSERT INTO `admin_p_detail` (`id`, `p_id`, `user_id`, `uni_name`, `uni_program`, `uni_dept`, `uni_campus`, `max_duration`, `min_duration`, `t_courses`, `t_hours`, `img`, `status`) VALUES
 (1, 1, 4, 'gcuf', 'Bs Computer Science', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Documentation.docx', '0'),
 (4, 3, 4, 'gcuf', 'Bs Information technology', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Muhammad Zahid Tufail-CV.pdf', '1'),
-(6, 7, 4, 'gcuf', 'Physics', 'physics', 'fsd', '4 years', '4 years', '8', '20', 'Documentation1.docx', '1');
+(6, 7, 4, 'gcuf', 'Physics', 'physics', 'fsd', '4 years', '4 years', '8', '20', 'Documentation1.docx', '1'),
+(7, 9, 4, 'gcuf', 'Biology', 'op', 'o', 'po', 'po', 'p', 'op', 'Documentation.docx', '');
 
 -- --------------------------------------------------------
 
@@ -242,8 +251,7 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
 --
 
 INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`) VALUES
-(49, 7, 6, '5320184998653', '90', '100', '90', '100', '4'),
-(53, 3, 6, '5320184998653', '90', '100', '90', '100', '4');
+(53, 3, 6, '5320184998653', '78', '100', '10', '100', '4');
 
 -- --------------------------------------------------------
 
@@ -258,7 +266,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromNot` varchar(255) NOT NULL,
   `p_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
 
 --
 -- Dumping data for table `notification`
@@ -266,23 +274,10 @@ CREATE TABLE IF NOT EXISTS `notification` (
 
 INSERT INTO `notification` (`id`, `title`, `toNot`, `fromNot`, `p_id`) VALUES
 (17, 'Yours Entry Test Marks 000 are added.', '', '4', ''),
-(20, 'Yours Entry Test Marks 90 are added for program Physics', '6', '4', '7'),
-(21, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(22, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(23, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(24, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(26, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(27, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(28, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(29, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(30, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(31, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(32, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(33, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(34, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(35, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(36, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3'),
-(37, 'Yours Entry Test Marks 50 are added for program Bs Information technology', '6', '4', '3');
+(18, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
+(19, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
+(20, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
+(22, 'Student removed enroll from your programs', '4', '6', '7');
 
 -- --------------------------------------------------------
 
@@ -298,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
   `p_status` varchar(255) NOT NULL,
   `fees` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `programs`
@@ -308,7 +303,8 @@ INSERT INTO `programs` (`id`, `title`, `user_id`, `status`, `p_status`, `fees`) 
 (1, 'Bs Computer Science', 4, 0, 'Completed', '90000'),
 (3, 'Bs Information technology', 4, 1, 'Completed', '1000'),
 (7, 'Physics', 4, 1, 'Completed', '89000'),
-(8, 'Bs Chemistry', 4, 0, '', '');
+(8, 'Bs Chemistry', 4, 0, '', ''),
+(9, 'Biology', 4, 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -350,14 +346,15 @@ CREATE TABLE IF NOT EXISTS `student_doc_detail` (
   `img6` varchar(255) NOT NULL,
   `img7` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `student_doc_detail`
 --
 
 INSERT INTO `student_doc_detail` (`id`, `user_id`, `img1`, `img2`, `img3`, `img4`, `img5`, `img6`, `img7`) VALUES
-(2, 2, 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png');
+(2, 2, 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png'),
+(3, 6, 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png', 'logo.png');
 
 -- --------------------------------------------------------
 
@@ -420,18 +417,21 @@ CREATE TABLE IF NOT EXISTS `student_p_detail` (
   `gender` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
   `domicile` varchar(255) NOT NULL,
+  `hq` varchar(255) NOT NULL,
   `cnic` varchar(255) NOT NULL,
   `mobile` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `handicaped` varchar(255) NOT NULL,
+  `sm` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `student_p_detail`
 --
 
-INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `cnic`, `mobile`, `email`) VALUES
-(1, 6, 'logo.png', 'Student', 'saleem', '7-JAN-1994', 'Male', 'Pakistani', 'Faisalabad', '5320184998653', '03148617631', '03148617631');
+INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `hq`, `cnic`, `mobile`, `email`, `handicaped`, `sm`) VALUES
+(3, 6, '764070681_l.gif', 'Student', 'saleem', '2-FEB-1961', 'Male', 'Pakistani', 'Bahawalpur', 'no', '33098978787878', '03148767873', 'student@gmail.com', 'no', 'no');
 
 -- --------------------------------------------------------
 

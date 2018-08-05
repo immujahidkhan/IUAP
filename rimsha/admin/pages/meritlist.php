@@ -3,9 +3,9 @@ session_start();
 include "../../config.php";
 if(empty($_SESSION['id']))
 		{
-			 ?>
-			 <script> window.location.href="login.php";</script>
-			 <?php 
+		?>
+		<script> window.location.href="login.php";</script>
+		<?php 
 		}else{
 			$user_id = $_SESSION['id'];
 		}
@@ -169,12 +169,16 @@ include "assets/main_header.php";
 					echo $MeritData['ahq'];
 					echo $MeritData['aet'];
 					echo $MeritData['ait']."<br>";*/
+					if(empty($data_course_enrolled_query['marks']) && empty($data_course_enrolled_query['interview_marks']) )
+					{
+						
+					}else{
 					echo (round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
-										?></td>
+					}?></td>
                                     </tr>
-									<?php
-									}
-									?>
+					<?php
+					}
+					?>
     </tbody>
   </table>
 </div>

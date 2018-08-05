@@ -11,8 +11,14 @@ $t_seats= $_POST['t_seats'];
 $merit= $_POST['merit'];
 $punjab = $_POST['punjab'];
 $sindh = $_POST['sindh'];
+$kpk = $_POST['kpk'];
+$bal = $_POST['bal'];
+$fed = $_POST['fed'];
+$fata = $_POST['fata'];
+$sports = $_POST['sports'];
+$handicaped = $_POST['handicaped'];
 		
-$query=$class->insert("INSERT INTO `admin_criteria_list`(`p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh`) VALUES ('$p_id','$user_id','$t_seats','$merit','$punjab','$sindh')");
+$query=$class->insert("INSERT INTO `admin_criteria_list`(`p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh` , `kpk`, `bal`, `fed`, `fata`, `sports`, `handicaped`) VALUES ('$p_id','$user_id','$t_seats','$merit','$punjab','$sindh','$kpk','$bal','$fed','$fata','$sports','$handicaped')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -31,8 +37,14 @@ $t_seats= $_POST['t_seats'];
 $merit= $_POST['merit'];
 $punjab = $_POST['punjab'];
 $sindh = $_POST['sindh'];
+$kpk = $_POST['kpk'];
+$bal = $_POST['bal'];
+$fed = $_POST['fed'];
+$fata = $_POST['fata'];
+$sports = $_POST['sports'];
+$handicaped = $_POST['handicaped'];
 		
-$query=$class->insert("UPDATE `admin_criteria_list` SET `t_seats` = '$t_seats', `quota` = '$merit', `punjab` = '$punjab', `sindh` = '$sindh' where `p_id`='$p_id' AND `user_id`='$user_id'");
+$query=$class->insert("UPDATE `admin_criteria_list` SET `t_seats` = '$t_seats', `quota` = '$merit', `punjab` = '$punjab', `sindh` = '$sindh' , `kpk` = '$kpk' , `bal`='$bal' , `fed` = '$fed' , `fata` = '$fata' , `sports`='$sports' , `handicaped`='$handicaped' where `p_id`='$p_id' AND `user_id`='$user_id'");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -116,18 +128,59 @@ $query=$class->insert("UPDATE `admin_criteria_list` SET `t_seats` = '$t_seats', 
   </div>
   </div>
 	<div id="test" <?php echo $visible?>>
-   <div class="form-group">
+   <div class="form-group" id="dp">
     <label class="control-label col-sm-5" for="email">Punjab Seats :</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" value="<?php echo $Details['punjab'];?>" name="punjab"  placeholder="">
+      <input type="text" class="form-control" id="punjab" value="<?php echo $Details['punjab'];?>" name="punjab"  placeholder="">
     </div>
+	<a href="#" onclick="hideFun('dp');"><span class="fa fa-times-circle-o"></span></a>
   </div>
   
-   <div class="form-group">
+   <div class="form-group" id="ds">
     <label class="control-label col-sm-5" for="email">Sindh Seats :</label>
     <div class="col-sm-4">
-      <input type="text" class="form-control" value="<?php echo $Details['sindh'];?>" name="sindh" placeholder="">
+      <input type="text" class="form-control" id="sindh" value="<?php echo $Details['sindh'];?>" name="sindh" placeholder="">
     </div>
+	<a href="#" onclick="hideFun('ds');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  <div class="form-group" id="dk">
+    <label class="control-label col-sm-5" for="email">KPK Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="kpk" value="<?php echo $Details['kpk'];?>" name="kpk" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('dk');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  <div class="form-group" id="db">
+    <label class="control-label col-sm-5" for="email">Balochistan Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="bal" value="<?php echo $Details['bal'];?>" name="bal" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('db');"><span class="fa fa-times-circle-o"></span></a>
+  </div><div class="form-group" id="df">
+    <label class="control-label col-sm-5" for="email">Federal Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="fed" value="<?php echo $Details['fed'];?>" name="fed" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('df');"><span class="fa fa-times-circle-o"></span></a>
+  </div><div class="form-group" id="dfata">
+    <label class="control-label col-sm-5" for="email">FATA and tribal areas Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="fata" value="<?php echo $Details['fata'];?>" name="fata" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('dfata');"><span class="fa fa-times-circle-o"></span></a>
+  </div><div class="form-group" id="dsm">
+    <label class="control-label col-sm-5" for="email">Sports Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="sports" value="<?php echo $Details['sports'];?>" name="sports" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('dsm');"><span class="fa fa-times-circle-o"></span></a>
+  </div>
+  <div class="form-group" id="dh">
+    <label class="control-label col-sm-5" for="email">Handicaped Seats :</label>
+    <div class="col-sm-4">
+      <input type="text" class="form-control" id="handicaped" value="<?php echo $Details['handicaped'];?>" name="handicaped" placeholder="">
+    </div>
+	<a href="#" onclick="hideFun('dh');"><span class="fa fa-times-circle-o"></span></a>
   </div>
   </div>
    </div>
@@ -160,6 +213,45 @@ $query=$class->insert("UPDATE `admin_criteria_list` SET `t_seats` = '$t_seats', 
 
 </div>
 </div>        
+<script>
+function hideFun(myval)
+{
+	if(myval=='dp')
+	{
+	document.getElementById("punjab").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='ds')
+	{
+	document.getElementById("sindh").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='dk')
+	{
+	document.getElementById("kpk").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='db')
+	{
+	document.getElementById("bal").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='df')
+	{
+	document.getElementById("fed").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='dfata')
+	{
+	document.getElementById("fata").value = "";
+	document.getElementById(myval).style.display = "none";
+	}else if(myval=='dsm')
+	{
+	document.getElementById("sports").value = "";
+	document.getElementById(myval).style.display = "none";
+	}
+	else if(myval=='dh')
+	{
+	document.getElementById("handicaped").value = "";
+	document.getElementById(myval).style.display = "none";
+	}
+}
+</script> 
 <?php
 
 require_once "assets/footer.php";

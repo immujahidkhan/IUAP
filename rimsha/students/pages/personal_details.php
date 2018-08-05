@@ -18,10 +18,13 @@ $nationality= $_POST['nationality'];
 $domicile= $_POST['domicile'];
 $cnic= $_POST['cnic'];
 $mobile= $_POST['mobile'];
-$email= $_POST['email'];
+$emailId= $_POST['emailId'];
+$hq= $_POST['hq'];
+$handicaped = $_POST['handicaped'];
+$sm = $_POST['sm'];
 		
-$query=$class->insert("INSERT INTO `student_p_detail` ( `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `cnic`, `mobile`, `email`) 
-												VALUES ('$user_id','$image','$name','$f_name','$dob','$gender','$nationality','$domicile','cnic','$mobile','$email')");
+$query=$class->insert("INSERT INTO `student_p_detail` ( `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `cnic`, `mobile`, `email`,`hq`,`handicaped`,`sm`) 
+												VALUES ('$user_id','$image','$name','$f_name','$dob','$gender','$nationality','$domicile','$cnic','$mobile','$emailId','$hq','$handicaped','$sm')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -32,36 +35,7 @@ $query=$class->insert("INSERT INTO `student_p_detail` ( `user_id`, `img`, `name`
 				echo "Error";
 				}
 }
-if(isset($_POST['update']))
-{
-$folder = "../images/";
-$image = $_FILES['img']['name'];
-$path= $folder.$image;
-move_uploaded_file($_FILES['img']['tmp_name'],$path);
-$name= $_POST['name'];
-$f_name= $_POST['f_name'];
-$dob= $_POST['day']."-".$_POST['month']."-".$_POST['year'];
-$gender= $_POST['gender'];
-$nationality= $_POST['nationality'];
-$domicile= $_POST['domicile'];
-$cnic= $_POST['cnic'];
-$mobile= $_POST['mobile'];
-$email= $_POST['email'];
-if(empty($image))
-{
-	$image = $Details['img'];
-}
-$query=$class->insert("UPDATE `student_p_detail` set `img` = '$image', `name` = '$name', `f_name` = '$f_name', `dob` = '$dob', `gender` = '$gender', `nationality` = '$nationality', `domicile` = '$domicile', `cnic` = '$cnic', `mobile` = '$mobile', `email` = '$mobile' where `user_id`='$user_id'");
-			if($query){
-			//$class->redirect("program_details.php?pId=1");
-			?>
-			 <script> window.location.href="address_details.php";</script>
-			<?php
-			}
-			else{
-				echo "Error";
-				}
-}
+
 ?>
 
 <script type="text/javascript">
@@ -102,7 +76,40 @@ function showImage() {
                <div class="panel panel-primary">
 				<div class="panel-heading">Enter Your Personal Details</div>
 				<div class="panel-body">
-
+<?php
+if(isset($_POST['update']))
+{
+$folder = "../images/";
+$image = $_FILES['img']['name'];
+$path= $folder.$image;
+move_uploaded_file($_FILES['img']['tmp_name'],$path);
+$name= $_POST['name'];
+$f_name= $_POST['f_name'];
+$dob= $_POST['day']."-".$_POST['month']."-".$_POST['year'];
+$gender= $_POST['gender'];
+$nationality= $_POST['nationality'];
+$domicile= $_POST['domicile'];
+$cnic= $_POST['cnic'];
+$mobile= $_POST['mobile'];
+$emailId= $_POST['emailId'];
+$hq= $_POST['hq'];
+$handicaped = $_POST['handicaped'];
+$sm = $_POST['sm'];
+if(empty($image))
+{
+	$image = $Details['img'];
+}
+$query=$class->insert("UPDATE `student_p_detail` set `img` = '$image', `name` = '$name', `f_name` = '$f_name', `dob` = '$dob', `gender` = '$gender', `nationality` = '$nationality', `domicile` = '$domicile', `cnic` = '$cnic', `mobile` = '$mobile', `email` = '$emailId' , `hq` = '$hq' , `handicaped` = '$handicaped' , `sm` = '$sm' where `user_id`='$user_id'");
+			if($query){
+			//$class->redirect("program_details.php?pId=1");
+			?>
+			<script> window.location.href="address_details.php";</script>
+			<?php
+			}
+			else{
+				echo "Error";
+				}
+}?>
 <form class="form-horizontal"  method="post" enctype="multipart/form-data">
   <div class="form-group" >
     <label class="control-label col-sm-1" for="email"><span class="star">*</span>Upload Photo:</label>
@@ -413,6 +420,7 @@ $pieces[2]; // piece2
 	</div>
 	</div>
 	
+	
   <div class="form-group">
   <label class="control-label col-sm-1" for="nationality"><span class="star">*</span>Nationality:</label>
   <div class="row">
@@ -475,13 +483,13 @@ $pieces[2]; // piece2
 	</div>
 	</div>
 	 <div class="form-group">
-    <label class="control-label col-sm-1" for="email"><span class="star">*</span>CNIC:</label>
+    <label class="control-label col-sm-1" for=""><span class="star">*</span>CNIC:</label>
 	  <div class="col-sm-4">
       <input type="text" class="form-control" value="<?php if(isset($Details['cnic'])){ echo $Details['cnic'];};?>" name="cnic" required placeholder="Enter CNIC">
     </div>
 	</div>
 	 <div class="form-group">
-    <label class="control-label col-sm-1" for="email"><span class="star">*</span>Mobile:</label>
+    <label class="control-label col-sm-1" for=""><span class="star">*</span>Mobile:</label>
 	  <div class="col-sm-4">
       <input type="text" class="form-control"  value="<?php echo $Details['mobile'];?>" name="mobile" placeholder="03***"> 
     </div>
@@ -490,12 +498,87 @@ $pieces[2]; // piece2
 	<div class="form-group">
     <label class="control-label col-sm-1" for="email"><span class="star">*</span>Email:</label>
     <div class="col-sm-4">
-      <input type="email" class="form-control" disabled  value="<?php echo $_SESSION['email'] ;?>" name="email" required>
+      <input type="text" class="form-control" readonly  value="<?php echo $_SESSION['email'] ;?>" name="emailId">
     </div>
   </div>
+  <div class="form-group">
+	 <label class="control-label col-sm-4"><span class="star">*</span>Are You Hafiz e Quran:</label>
+	 <div class="row">
+	<div class="col-md-6">
+	<?php 
+	$yes = "";
+	$no = "";
+	if($Details['hq']=="yes")
+	{
+		$yes = "checked";
+		$no = "";
+	}else{
+		$no = "checked";
+		$yes = "";
+	}
+	?>
+	<label class="radio-inline">
+      <input type="radio" name="hq" <?php echo $no;?> required value="no">No , I'm not
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="hq" <?php echo $yes;?> value="yes">Yes , I'm
+    </label>
+	</div>
+	</div>
+	</div>
+	<div class="form-group">
+	 <label class="control-label col-sm-4"><span class="star">*</span>Are You Sportman:</label>
+	 <div class="row">
+	<div class="col-md-6">
+	<?php 
+	$yes = "";
+	$no = "";
+	if($Details['sm']=="yes")
+	{
+		$yes = "checked";
+		$no = "";
+	}else{
+		$no = "checked";
+		$yes = "";
+	}
+	?>
+	<label class="radio-inline">
+      <input type="radio" name="sm" <?php echo $no;?> required value="no">No , I'm not
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="sm" <?php echo $yes;?> value="yes">Yes , I'm
+    </label>
+	</div>
+	</div>
+	</div>
+	<div class="form-group">
+	 <label class="control-label col-sm-4"><span class="star">*</span>Are You handicaped :</label>
+	 <div class="row">
+	<div class="col-md-6">
+	<?php 
+	$yes = "";
+	$no = "";
+	if($Details['handicaped']=="yes")
+	{
+		$yes = "checked";
+		$no = "";
+	}else{
+		$no = "checked";
+		$yes = "";
+	}
+	?>
+	<label class="radio-inline">
+      <input type="radio" name="handicaped" <?php echo $no;?> required value="no">No , I'm not
+    </label>
+    <label class="radio-inline">
+      <input type="radio" name="handicaped" <?php echo $yes;?> value="yes">Yes , I'm
+    </label>
+	</div>
+	</div>
+	</div>
   
-  
-	
+	<br>
+	<br>
   <div class="form-group"> 
     <div class="col-sm-offset-2 col-sm-10">
       <?php
