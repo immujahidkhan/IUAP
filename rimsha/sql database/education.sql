@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 05, 2018 at 01:05 PM
+-- Generation Time: Aug 07, 2018 at 09:15 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -180,6 +180,7 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `p_id` int(255) NOT NULL,
   `user_id` int(255) NOT NULL,
+  `degreeLevel` varchar(255) NOT NULL,
   `uni_name` varchar(255) NOT NULL,
   `uni_program` varchar(255) NOT NULL,
   `uni_dept` varchar(255) NOT NULL,
@@ -190,6 +191,7 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
   `t_hours` varchar(255) NOT NULL,
   `img` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
+  `p_status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
@@ -197,11 +199,11 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
 -- Dumping data for table `admin_p_detail`
 --
 
-INSERT INTO `admin_p_detail` (`id`, `p_id`, `user_id`, `uni_name`, `uni_program`, `uni_dept`, `uni_campus`, `max_duration`, `min_duration`, `t_courses`, `t_hours`, `img`, `status`) VALUES
-(1, 1, 4, 'gcuf', 'Bs Computer Science', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Documentation.docx', '0'),
-(4, 3, 4, 'gcuf', 'Bs Information technology', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Muhammad Zahid Tufail-CV.pdf', '1'),
-(6, 7, 4, 'gcuf', 'Physics', 'physics', 'fsd', '4 years', '4 years', '8', '20', 'Documentation1.docx', '1'),
-(7, 9, 4, 'gcuf', 'Biology', 'op', 'o', 'po', 'po', 'p', 'op', 'Documentation.docx', '');
+INSERT INTO `admin_p_detail` (`id`, `p_id`, `user_id`, `degreeLevel`, `uni_name`, `uni_program`, `uni_dept`, `uni_campus`, `max_duration`, `min_duration`, `t_courses`, `t_hours`, `img`, `status`, `p_status`) VALUES
+(1, 1, 4, 'BS', 'gcuf', 'Bs Computer Science', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Documentation.docx', '1', 'Completed'),
+(4, 3, 4, 'BS', 'gcuf', 'Bs Information technology', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Muhammad Zahid Tufail-CV.pdf', '1', 'Completed'),
+(6, 7, 4, 'MS', 'gcuf', 'Physics', 'physics', 'fsd', '4 years', '4 years', '8', '20', 'Documentation1.docx', '1', 'Completed'),
+(7, 9, 4, 'MS', 'gcuf', 'Biology', 'op', 'o', 'po', 'po', 'p', 'op', 'Documentation.docx', '1', '');
 
 -- --------------------------------------------------------
 
@@ -243,6 +245,7 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
   `interview_marks` varchar(255) NOT NULL,
   `I_total` varchar(255) NOT NULL,
   `by_` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
@@ -250,8 +253,36 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
 -- Dumping data for table `course_enrolled`
 --
 
-INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`) VALUES
-(53, 3, 6, '5320184998653', '78', '100', '10', '100', '4');
+INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`, `status`) VALUES
+(53, 3, 6, '33098978787878', '78', '100', '10', '100', '4', 'selected');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meritlist`
+--
+
+CREATE TABLE IF NOT EXISTS `meritlist` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `p_name` varchar(255) NOT NULL,
+  `p_id` int(255) NOT NULL,
+  `s_email` varchar(255) NOT NULL,
+  `s_name` varchar(255) NOT NULL,
+  `s_cnic` varchar(255) NOT NULL,
+  `s_domicile` varchar(255) NOT NULL,
+  `s_aggregate` varchar(255) NOT NULL,
+  `admin_id` int(255) NOT NULL,
+  `s_id` int(255) NOT NULL,
+  `status` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `meritlist`
+--
+
+INSERT INTO `meritlist` (`id`, `p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`) VALUES
+(1, 'Bs Information technology', 3, 'student@gmail.com', 'Student', '33098978787878', 'Bahawalpur', '88.032', 4, 6, 'selected');
 
 -- --------------------------------------------------------
 
@@ -266,7 +297,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromNot` varchar(255) NOT NULL,
   `p_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `notification`
@@ -277,7 +308,7 @@ INSERT INTO `notification` (`id`, `title`, `toNot`, `fromNot`, `p_id`) VALUES
 (18, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
 (19, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
 (20, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
-(22, 'Student removed enroll from your programs', '4', '6', '7');
+(23, 'Yours Interview Marks 100 are added for program Bs Information technology', '6', '4', '3');
 
 -- --------------------------------------------------------
 
@@ -300,7 +331,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
 --
 
 INSERT INTO `programs` (`id`, `title`, `user_id`, `status`, `p_status`, `fees`) VALUES
-(1, 'Bs Computer Science', 4, 0, 'Completed', '90000'),
+(1, 'Bs Computer Science', 4, 1, 'Completed', '90000'),
 (3, 'Bs Information technology', 4, 1, 'Completed', '1000'),
 (7, 'Physics', 4, 1, 'Completed', '89000'),
 (8, 'Bs Chemistry', 4, 0, '', ''),
@@ -458,9 +489,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `pass`, `status`, `role`, `request`, `uni_name`, `created_date`) VALUES
 (4, 'Admin', 'admin@gmail.com', '123', '0', 'admin', '', 'gcuf', '18-Jul-2018 04:12:48pm'),
-(6, 'Student', 'student@gmail.com', '123', '0', 'student', '', 'gcuf', '18-Jul-2018 08:09:55pm'),
+(6, 'Student', 'student@gmail.com', '123', '0', 'student', '', '', '18-Jul-2018 08:09:55pm'),
 (7, 'Super Admin', 'superadmin@gmail.com', '123', '0', 'superadmin', '', '', '18-Jul-2018 04:12:48pm'),
-(8, 'Mujahid', 'mujahid@gmail.com', '123', '0', 'admin', '', 'Gcuf', '24-Jul-2018 08:26:05pm');
+(8, 'Mujahid', 'mujahid@gmail.com', '123', '0', 'admin', '', 'NTU', '24-Jul-2018 08:26:05pm');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

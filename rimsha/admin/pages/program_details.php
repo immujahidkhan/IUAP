@@ -9,6 +9,7 @@ $programD=$class->fetchdata("SELECT * FROM `admin_p_detail` where p_id='$p_id'")
 $Details=$programD->fetch(PDO::FETCH_ASSOC);
 if(isset($_POST['done']))
 {
+$degree = $_POST['degree'];
 $uni_name= $_POST['uni_name'];
 $uni_program= $_POST['uni_program'];
 $uni_dept= $_POST['uni_dept'];
@@ -22,7 +23,7 @@ $image = $_FILES['img']['name'];
 $path= $folder.$image;
 move_uploaded_file($_FILES['img']['tmp_name'],$path);
 		
-$query=$class->insert("INSERT INTO admin_p_detail (p_id, user_id, uni_name, uni_program, uni_dept, uni_campus, max_duration, min_duration, t_courses, t_hours, img) VALUES ('$p_id','$user_id','$uni_name','$uni_program','$uni_dept','$uni_campus','$max_time','$min_time','$t_courses','$t_hours','$image')");
+$query=$class->insert("INSERT INTO admin_p_detail (p_id, user_id,degreeLevel,uni_name, uni_program, uni_dept, uni_campus, max_duration, min_duration, t_courses, t_hours, img) VALUES ('$p_id','$user_id','$degree','$uni_name','$uni_program','$uni_dept','$uni_campus','$max_time','$min_time','$t_courses','$t_hours','$image')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -38,7 +39,7 @@ $query=$class->insert("INSERT INTO admin_p_detail (p_id, user_id, uni_name, uni_
 }
 if(isset($_POST['update']))
 {
-	
+$degree = $_POST['degree'];
 $uni_name= $_POST['uni_name'];
 $uni_program= $_POST['uni_program'];
 $uni_dept= $_POST['uni_dept'];
@@ -56,7 +57,7 @@ if(empty($image))
 {
 $image = $Details['img'];
 }	
-$query=$class->insert("UPDATE  admin_p_detail SET  uni_name = '$uni_name' , uni_program = '$uni_program', uni_dept = '$uni_dept', uni_campus = '$uni_campus', max_duration = '$max_time', min_duration = '$min_time', t_courses = '$t_courses', t_hours = '$t_hours', img = '$image' where `p_id` = '$p_id' and `user_id`='$user_id'");
+$query=$class->insert("UPDATE  admin_p_detail SET degreeLevel='$degree', uni_name = '$uni_name' , uni_program = '$uni_program', uni_dept = '$uni_dept', uni_campus = '$uni_campus', max_duration = '$max_time', min_duration = '$min_time', t_courses = '$t_courses', t_hours = '$t_hours', img = '$image' where `p_id` = '$p_id' and `user_id`='$user_id'");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -87,13 +88,25 @@ $query=$class->insert("UPDATE  admin_p_detail SET  uni_name = '$uni_name' , uni_
 				<div class="panel-body">
 				
   <form class="form-horizontal" method="post" enctype="multipart/form-data">
-    <div class="form-group">
+   <div class="row">
+     <label class="control-label col-sm-5" for="email"><span class="star">*</span>Select Degree Program:</label>
+    <div class="col-md-4">
+  <select class="form-control" name="degree" required>
+	<option value="">...</option>
+	<option value="PHD" <?php if($Details['degreeLevel']=="PHD"){ echo 'selected';}?>>PHD</option>
+	<option value="MS" <?php if($Details['degreeLevel']=="MS"){ echo 'selected';}?>>MS</option>
+	<option value="BS" <?php if($Details['degreeLevel']=="BS"){ echo 'selected';}?>>BS</option>
+  </select>
+  </div>
+  </div>
+	<br>
+	
+  <div class="form-group">
     <label class="control-label col-sm-2" for="email"><span class="star">*</span>University Name:</label>
     <div class="col-sm-10">
       <input type="text" name="uni_name" value="<?php echo 	$_SESSION['uni_name']; ?>" class="form-control" readonly placeholder="">
     </div>
   </div>
- 
    <div class="form-group">
     <label class="control-label col-sm-2" for="email"><span class="star">*</span>Programme Name:</label>
     <div class="col-sm-10">

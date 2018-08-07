@@ -75,6 +75,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="active"><a href="index.php" class="effect-3">Home</a></li>
 								<li><a href="about.php" class="effect-3">About</a></li>
 								<li><a href="courses.php" class="effect-3">Programs</a></li>
+								<li><a href="Universities.php" class="effect-3">Universities</a></li>
 								
 								<li class="dropdown" style="display:none;">
 									<a href="#" class="dropdown-toggle effect-3" data-toggle="dropdown">Pages <b class="caret"></b></a>

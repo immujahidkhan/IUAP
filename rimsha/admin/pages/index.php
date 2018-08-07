@@ -108,6 +108,7 @@ include "assets/main_header.php";
 	}
 	else {
 	$class->insert("UPDATE `programs` SET `p_status`='Completed' WHERE id = '$p_data[id]'");
+	$class->insert("UPDATE `admin_p_detail` SET `p_status`='Completed' WHERE p_id = '$p_data[id]'");
 	?>
 	<a href="instruction.php?pId=<?php echo $p_data['id'];?>" class="text-success" style="text-decoration:none;"><span class="glyphicon glyphicon-check"></span> Completed</a>
 	<?php

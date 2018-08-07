@@ -19,6 +19,12 @@ if(empty($_SESSION['id']))
 		<?php 	
 		}
 
+		if(isset($_POST['selected']))
+		{
+		$query=$class->insert("UPDATE `meritlist` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `s_id` = '$_POST[user_id]'");		
+		$query=$class->insert("UPDATE `course_enrolled` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `user_id` = '$_POST[user_id]'");		
+		
+		}
 		
 	if(isset($_POST['testNO']))
 	{
@@ -76,7 +82,7 @@ if(isset($_POST['cnic']))
 {
 	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `cnic` like '%$_POST[cnic]%'");	
 }else{
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id'");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id' and status = ''");
 }
 		
 if(isset($_GET['pId']))
@@ -118,7 +124,7 @@ include "assets/main_header.php";
  <table class="table table-hover table-bordered">
     <thead>
 	<tr>
-	<th colspan="6">
+	<th colspan="7">
 	<form method="post">
 	<input class="form-control" name="cnic" type="search" placeholder="Search by Cnic">
 	</form>
@@ -131,6 +137,7 @@ include "assets/main_header.php";
 		<th>Student CNIC</th>
 		<th>Domicile</th>
 		<th>Aggregate</th>
+		<th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -152,11 +159,11 @@ include "assets/main_header.php";
 									$CninData=$query_student_p_detail->fetch(PDO::FETCH_ASSOC);
 									?>
 									<tr class="odd gradeX">
-                                        <td><?php echo $dataP['uni_program'];?></td>
-                                        <td><?php echo $Userdata['name'];?></td>
-                                        <td><?php echo $Userdata['email'];?></td>
-										<td><?php echo $CninData['cnic'];?></td>
-										<td><?php echo $CninData['domicile'];?></td>
+                                        <td><?php echo $p_name = $dataP['uni_program'];?></td>
+                                        <td><?php echo $s_name = $Userdata['name'];?></td>
+                                        <td><?php echo $s_email = $Userdata['email'];?></td>
+										<td><?php echo $s_cnic = $data_course_enrolled_query['cnic'];?></td>
+										<td><?php echo $s_domicile = $CninData['domicile'];?></td>
 									    <td>
 										<?php
 					$queryMerit= $class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$data_course_enrolled_query[p_id]'");
@@ -169,13 +176,35 @@ include "assets/main_header.php";
 					echo $MeritData['ahq'];
 					echo $MeritData['aet'];
 					echo $MeritData['ait']."<br>";*/
-					if(empty($data_course_enrolled_query['marks']) && empty($data_course_enrolled_query['interview_marks']) )
+					if(empty($data_course_enrolled_query['E_total']) || empty($data_course_enrolled_query['I_total']) )
 					{
-						
+						echo "Enter Interview Marks Or Entry Test Marks";
 					}else{
-					echo (round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
+					echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
 					}?></td>
-                                    </tr>
+					<td> 
+					 <form method="post" action="meritlist.php">
+					<input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
+					<input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>				   
+					<label class="checkbox-inline">
+					<input type="checkbox" name="selected" onChange="this.form.submit()" value="<?php $data_course_enrolled_query['user_id']?>">SELECT
+					</label>
+					</form>
+					</td>
+					<?php
+			$admin_id = $data_course_enrolled_query['by_'];
+			$p_id = $data_course_enrolled_query['p_id'];
+			$s_id = $data_course_enrolled_query['user_id'];
+			$query1= $class->fetchdata("SELECT * FROM `meritlist` WHERE `p_id` = '$p_id' and `admin_id` = '$admin_id' and `s_id` = '$s_id'");
+			if($query1->rowCount()==0)
+			{
+			//$data=$query->fetch(PDO::FETCH_ASSOC);
+		$query=$class->insert("INSERT INTO `meritlist`(`p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`) VALUES ('$p_name','$p_id','$s_email','$s_name','$s_cnic','$s_domicile','$s_aggregate','$admin_id','$s_id','')");
+			}else{
+		$query=$class->insert("UPDATE `meritlist` SET `s_cnic`='$s_cnic',`s_aggregate`='$s_aggregate' WHERE `p_id` = '$p_id' and `admin_id` = '$admin_id' and `s_id` = '$s_id'");		
+			}
+			?>
+                    </tr>
 					<?php
 					}
 					?>

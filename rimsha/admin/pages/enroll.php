@@ -181,7 +181,7 @@ include "assets/main_header.php";
                                         <td><?php echo $dataP['uni_program'];?></td>
                                         <td><?php echo $Userdata['name'];?></td>
                                         <td><?php echo $Userdata['email'];?></td>
-										<td><?php echo $CninData['cnic'];?></td>
+										<td><?php echo $data_course_enrolled_query['cnic'];?></td>
                                        <td>
 										<div class="form-group row">
 										<div class="col-xs-6">
