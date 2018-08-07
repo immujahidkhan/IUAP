@@ -1,11 +1,12 @@
 <?php
 session_start();
 include "../../config.php";
+
 if(empty($_SESSION['id']))
 		{
-			 ?>
-			 <script> window.location.href="login.php";</script>
-			 <?php 
+		?>
+		<script> window.location.href="login.php";</script>
+	<?php 
 		}else{
 			$user_id = $_SESSION['id'];
 		}
@@ -18,8 +19,7 @@ if(empty($_SESSION['id']))
 		<script> window.location.href="logout.php";</script>
 		<?php 	
 		}
-		
-		
+			
 	if(isset($_POST['testNO']))
 	{
 	$title_p_name = $_POST['p_name'];
