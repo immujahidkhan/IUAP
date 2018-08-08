@@ -1,12 +1,11 @@
 <?php
 session_start();
 include "../../config.php";
-
 if(empty($_SESSION['id']))
 		{
-		?>
-		<script> window.location.href="login.php";</script>
-	<?php 
+			 ?>
+			 <script> window.location.href="login.php";</script>
+			 <?php 
 		}else{
 			$user_id = $_SESSION['id'];
 		}
@@ -19,11 +18,12 @@ if(empty($_SESSION['id']))
 		<script> window.location.href="logout.php";</script>
 		<?php 	
 		}
-			
+		
+		
 	if(isset($_POST['testNO']))
 	{
 	$title_p_name = $_POST['p_name'];
-	$query=$class->insert("UPDATE `course_enrolled` SET `marks`='$_POST[testNO]' WHERE p_id = $_POST[p_id]");
+	$query=$class->insert("UPDATE `course_enrolled` SET `marks`='$_POST[testNO]' WHERE p_id = $_POST[p_id] and user_id = '$_POST[user_id]'");
 	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
 
 	if($checkD->rowCount()==0)
@@ -39,7 +39,7 @@ if(empty($_SESSION['id']))
 	if(isset($_POST['interviewNO']))
 	{
 	$title_p_name = $_POST['p_name'];
-	$query=$class->insert("UPDATE `course_enrolled` SET `interview_marks`='$_POST[interviewNO]' WHERE p_id = $_POST[p_id]");
+	$query=$class->insert("UPDATE `course_enrolled` SET `interview_marks`='$_POST[interviewNO]' WHERE p_id = $_POST[p_id] and user_id = '$_POST[user_id]'");
 	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
 
 	if($checkD->rowCount()==0)
@@ -54,32 +54,12 @@ if(empty($_SESSION['id']))
 	if(isset($_POST['TotalsEntryTest']))
 	{
 	$title_p_name = $_POST['p_name'];
-	$query=$class->insert("UPDATE `course_enrolled` SET `E_total`='$_POST[TotalsEntryTest]' WHERE p_id = $_POST[p_id]");
-	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
-
-	if($checkD->rowCount()==0)
-	{
-	$p_name = "Yours Interview Marks ".$_POST['TotalsEntryTest']." are added for program ".$title_p_name;
-    $class->insert("INSERT INTO `notification`(`title`,`fromNot`,`toNot`,`p_id`) VALUES('$p_name','$user_id','$_POST[user_id]','$_POST[p_id]')");
-	}else{
-	$p_name = "Yours Interview Marks ".$_POST['TotalsEntryTest']." are added for program ".$title_p_name;
-	$class->insert("UPDATE `notification` SET `title`='$p_name',`toNot`='$_POST[user_id]',`fromNot`='$user_id' where `p_id`='$_POST[p_id]'");	
-	}
+	$query=$class->insert("UPDATE `course_enrolled` SET `E_total`='$_POST[TotalsEntryTest]' WHERE p_id = $_POST[p_id] and user_id = '$_POST[user_id]'");
 	}
 	if(isset($_POST['TotalsInterviewTest']))
 	{
 	$title_p_name = $_POST['p_name'];
-	$query=$class->insert("UPDATE `course_enrolled` SET `I_total`='$_POST[TotalsInterviewTest]' WHERE p_id = $_POST[p_id]");
-	$checkD=$class->fetchdata("SELECT * FROM `notification` WHERE p_id = '$_POST[p_id]'");
-
-	if($checkD->rowCount()==0)
-	{
-	$p_name = "Yours Interview Marks ".$_POST['TotalsInterviewTest']." are added for program ".$title_p_name;
-    $class->insert("INSERT INTO `notification`(`title`,`fromNot`,`toNot`,`p_id`) VALUES('$p_name','$user_id','$_POST[user_id]','$_POST[p_id]')");
-	}else{
-	$p_name = "Yours Interview Marks ".$_POST['TotalsInterviewTest']." are added for program ".$title_p_name;
-	$class->insert("UPDATE `notification` SET `title`='$p_name',`toNot`='$_POST[user_id]',`fromNot`='$user_id' where `p_id`='$_POST[p_id]'");	
-	}
+	$query=$class->insert("UPDATE `course_enrolled` SET `I_total`='$_POST[TotalsInterviewTest]' WHERE p_id = $_POST[p_id] and user_id = '$_POST[user_id]'");
 	}
 
 if(isset($_POST['add_done']))
@@ -103,7 +83,7 @@ catch(PDOException $e)
 }
 if(isset($_POST['cnic']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `cnic` like '%$_POST[cnic]%'");	
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `cnic` like '$_POST[cnic]%'");	
 }else{
 	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id'");
 }
@@ -126,14 +106,12 @@ include "assets/main_header.php";
     </thead>
     <tbody>
 	 <?php
-	 $course_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id'");
+	 $course_query = $class->fetchdata("SELECT * FROM `programs` WHERE `user_id`='$user_id' and p_status = 'Completed' and status = '1'");
 	 while($Datacourse_query = $course_query->fetch(PDO::FETCH_ASSOC))
 	 {
-	 $program_query= $class->fetchdata("SELECT * FROM `programs` WHERE id = '$Datacourse_query[p_id]'");
-	 $dataP1=$program_query->fetch(PDO::FETCH_ASSOC);
 	 ?>
 	 <tr>
-	 <td><a href="enroll.php?pId=<?php echo $Datacourse_query['p_id'];?>"><?php echo $dataP1['title'];?></a></td>
+	 <td><a href="enroll.php?pId=<?php echo $Datacourse_query['id'];?>"><?php echo $Datacourse_query['title'];?></a></td>
 	 </tr>
 	 <?php
 	 }
@@ -235,5 +213,17 @@ include "assets/main_header.php";
 </div>
 
 <?php
+/*for($i=9;$i<=29;$i++)
+{
+	if($i%2==0)
+	{
+		$no = 1;
+	}else{
+		$no = 3;
+	}
+echo "INSERT INTO `course_enrolled`(`p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`) VALUES ('".$no."','".$i."','112131124124141','45','100','67','100','4');<br>";
+}
+*/
+
 include "assets/footer.php";
 ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2018 at 09:15 PM
+-- Generation Time: Aug 08, 2018 at 10:08 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -100,9 +100,9 @@ CREATE TABLE IF NOT EXISTS `admin_criteria_list` (
 --
 
 INSERT INTO `admin_criteria_list` (`id`, `p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh`, `kpk`, `bal`, `fed`, `fata`, `sports`, `handicaped`) VALUES
-(1, 1, 4, '30', 'Quota System', '15', '15', '', '', '', '', '', ''),
-(2, 3, 4, '30', 'Quota System', '15', '15', '', '', '', '', '', ''),
-(6, 7, 4, '90', 'Quota System', '', '', '', '', '9', '9', '9', '9');
+(1, 1, 4, '2', 'Quota System', '1', '1', '', '', '', '', '', ''),
+(2, 3, 4, '2', 'Quota System', '1', '1', '', '', '', '', '', ''),
+(6, 7, 4, '2', 'Quota System', '1', '1', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -143,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `admin_e_criteria` (
 INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_marks`, `inter_marks`, `bachlor_marks`, `master_marks`, `mphil_marks`, `type`, `sat`, `hec`, `nat`, `nts`, `af_matric`, `af_inter`, `af_bachlor`, `af_master`, `af_mphil`, `ahq`, `aet`, `ait`) VALUES
 (4, 4, 4, 'BA/BSC/BCOM/BBA', '99', '999', '', '', '', 'openMerit', '', '', '', '', '75', '12', '', '', '', '', '30', '5'),
 (7, 3, 4, 'PHD', '50%', '50%', '', '', '', 'openMerit', '', '', '', '', '75', '15', '', '', '', '', '30', '5'),
-(8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'openMerit', '', '', '', '', '', '', '', '', '', '', '30', '5'),
+(8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'openMerit', '', '', '', '', '75', '15', '', '', '', '', '5', '5'),
 (10, 7, 4, 'PHD', '45', '45', '45', '45', '45', 'openMerit', '55', '', '', '555', '75', '10', '5', '', '', '', '5', '5');
 
 -- --------------------------------------------------------
@@ -247,14 +247,16 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
   `by_` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `course_enrolled`
 --
 
 INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_total`, `interview_marks`, `I_total`, `by_`, `status`) VALUES
-(53, 3, 6, '33098978787878', '78', '100', '10', '100', '4', 'selected');
+(2, 1, 9, '33098978787878', '90', '100', '90', '100', '4', 'selected'),
+(3, 3, 9, '33098978787878', '50', '100', '10', '100', '4', 'selected'),
+(54, 7, 11, '33098978787878', '90', '100', '90', '100', '4', 'selected');
 
 -- --------------------------------------------------------
 
@@ -275,14 +277,16 @@ CREATE TABLE IF NOT EXISTS `meritlist` (
   `s_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `meritlist`
 --
 
 INSERT INTO `meritlist` (`id`, `p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`) VALUES
-(1, 'Bs Information technology', 3, 'student@gmail.com', 'Student', '33098978787878', 'Bahawalpur', '88.032', 4, 6, 'selected');
+(1, 'Bs Computer Science', 1, 'jk1@gmail.com', 'jk1', '33098978787878', 'Bahawalnagar', '60.791', 4, 9, 'selected'),
+(2, 'Bs Information technology', 3, 'jk1@gmail.com', 'jk1', '33098978787878', 'Bahawalnagar', '67.291', 4, 9, 'selected'),
+(3, 'Physics', 7, 'jk3@gmail.com', 'jk3', '33098978787878', 'D.G Khan', '82.997', 4, 11, 'selected');
 
 -- --------------------------------------------------------
 
@@ -297,7 +301,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromNot` varchar(255) NOT NULL,
   `p_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=42 ;
 
 --
 -- Dumping data for table `notification`
@@ -305,10 +309,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
 
 INSERT INTO `notification` (`id`, `title`, `toNot`, `fromNot`, `p_id`) VALUES
 (17, 'Yours Entry Test Marks 000 are added.', '', '4', ''),
-(18, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
-(19, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
-(20, 'You have Cancel applied to  Physics program.', '6', '4', '7'),
-(23, 'Yours Interview Marks 100 are added for program Bs Information technology', '6', '4', '3');
+(41, 'Yours Interview Marks 90 are added for program Physics', '11', '4', '7');
 
 -- --------------------------------------------------------
 
@@ -423,14 +424,16 @@ CREATE TABLE IF NOT EXISTS `student_e_detail` (
   `fa_obtained` varchar(255) NOT NULL,
   `ssc_obtained` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `student_e_detail`
 --
 
 INSERT INTO `student_e_detail` (`id`, `user_id`, `degree`, `ms_pass_year`, `bs_pass_year`, `ba_pass_year`, `fa_pass_year`, `ssc_pass_year`, `ms_uni_board`, `bs_uni_board`, `ba_uni_board`, `fa_uni_board`, `ssc_uni_board`, `ms_sub`, `bs_sub`, `ba_sub`, `fa_sub`, `ssc_sub`, `ms_max_marks`, `bs_max_marks`, `ba_max_marks`, `fa_max_marks`, `ssc_max_marks`, `ms_obtained`, `bs_obtained`, `ba_obtained`, `fa_obtained`, `ssc_obtained`) VALUES
-(4, 6, 'BS/MSC', '2012', '2010', '2011', '2010', '2010', 'gcuf', 'gcuf', 'gcuf', 'Bahawalpur', 'Bahawalpur', 'english', 'english', 'english', 'bscs', 'english', '1100', '4', '1100', '1100', '850', '644', '3.4', '', '633', '629');
+(5, 9, 'BS/MSC', '', '2010', '2012', '2011', '2011', '', 'hhh', 'gg', 'Bahawalpur', 'Bahawalpur', '', 'hh', 'hh', 'jj', 'kk', '', '4', '1100', '1100', '1100', '', '3.4', '633', '633', '633'),
+(6, 10, 'BS/MSC', '', '2018', '2014', '2012', '2012', '', 'll', 'kk', 'Gujranwala', 'Bahawalpur', '', 'lll', 'kk', 'kk', 'll', '', '4', '1100', '1100', '850', '', '3', '633', '633', '629'),
+(7, 11, 'BS/MSC', '', '2012', '2011', '2013', '2011', '', 'll', 'kk', 'Sahiwal', 'Rawalpindi', '', 'lll', 'kk', 'kk', 'll', '', '4', '1100', '1100', '850', '', '3', '833', '933', '700');
 
 -- --------------------------------------------------------
 
@@ -455,14 +458,17 @@ CREATE TABLE IF NOT EXISTS `student_p_detail` (
   `handicaped` varchar(255) NOT NULL,
   `sm` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `student_p_detail`
 --
 
 INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `hq`, `cnic`, `mobile`, `email`, `handicaped`, `sm`) VALUES
-(3, 6, '764070681_l.gif', 'Student', 'saleem', '2-FEB-1961', 'Male', 'Pakistani', 'Bahawalpur', 'no', '33098978787878', '03148767873', 'student@gmail.com', 'no', 'no');
+(3, 6, '764070681_l.gif', 'Student', 'saleem', '2-FEB-1961', 'Male', 'Pakistani', 'Bahawalpur', 'no', '33098978787878', '03148767873', 'student@gmail.com', 'no', 'no'),
+(4, 9, '', 'jk1', 'saleem', '2-FEB-1961', 'Male', 'Others', 'Bahawalnagar', 'yes', '33098978787878', '03148767873', 'jk1@gmail.com', 'no', 'no'),
+(5, 10, '', 'jk2', 'saleem', '2-FEB-1961', 'Female', 'Others', 'Bahawalnagar', 'no', '33098978787878', '03148767873', 'jk2@gmail.com', 'no', 'no'),
+(6, 11, '', 'jk3', 'saleem', '2-FEB-1964', 'Female', 'Others', 'D.G Khan', 'no', '33098978787878', '03148767873', 'jk3@gmail.com', 'no', 'no');
 
 -- --------------------------------------------------------
 
@@ -481,7 +487,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uni_name` varchar(255) NOT NULL,
   `created_date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=38 ;
 
 --
 -- Dumping data for table `users`
@@ -491,7 +497,36 @@ INSERT INTO `users` (`id`, `name`, `email`, `pass`, `status`, `role`, `request`,
 (4, 'Admin', 'admin@gmail.com', '123', '0', 'admin', '', 'gcuf', '18-Jul-2018 04:12:48pm'),
 (6, 'Student', 'student@gmail.com', '123', '0', 'student', '', '', '18-Jul-2018 08:09:55pm'),
 (7, 'Super Admin', 'superadmin@gmail.com', '123', '0', 'superadmin', '', '', '18-Jul-2018 04:12:48pm'),
-(8, 'Mujahid', 'mujahid@gmail.com', '123', '0', 'admin', '', 'NTU', '24-Jul-2018 08:26:05pm');
+(8, 'Mujahid', 'mujahid@gmail.com', '123', '0', 'admin', '', 'NTU', '24-Jul-2018 08:26:05pm'),
+(9, 'jk1', 'jk1@gmail.com', '123', '', 'student', '', '', ''),
+(10, 'jk2', 'jk2@gmail.com', '123', '', 'student', '', '', ''),
+(11, 'jk3', 'jk3@gmail.com', '123', '', 'student', '', '', ''),
+(12, 'jk4', 'jk4@gmail.com', '123', '', 'student', '', '', ''),
+(13, 'jk5', 'jk5@gmail.com', '123', '', 'student', '', '', ''),
+(14, 'jk6', 'jk6@gmail.com', '123', '', 'student', '', '', ''),
+(15, 'jk7', 'jk7@gmail.com', '123', '', 'student', '', '', ''),
+(16, 'jk8', 'jk8@gmail.com', '123', '', 'student', '', '', ''),
+(17, 'jk9', 'jk9@gmail.com', '123', '', 'student', '', '', ''),
+(18, 'jk10', 'jk10@gmail.com', '123', '', 'student', '', '', ''),
+(19, 'jk11', 'jk11@gmail.com', '123', '', 'student', '', '', ''),
+(20, 'jk12', 'jk12@gmail.com', '123', '', 'student', '', '', ''),
+(21, 'jk13', 'jk13@gmail.com', '123', '', 'student', '', '', ''),
+(22, 'jk14', 'jk14@gmail.com', '123', '', 'student', '', '', ''),
+(23, 'jk15', 'jk15@gmail.com', '123', '', 'student', '', '', ''),
+(24, 'jk16', 'jk16@gmail.com', '123', '', 'student', '', '', ''),
+(25, 'jk17', 'jk17@gmail.com', '123', '', 'student', '', '', ''),
+(26, 'jk18', 'jk18@gmail.com', '123', '', 'student', '', '', ''),
+(27, 'jk19', 'jk19@gmail.com', '123', '', 'student', '', '', ''),
+(28, 'jk20', 'jk20@gmail.com', '123', '', 'student', '', '', ''),
+(29, 'jk21', 'jk21@gmail.com', '123', '', 'student', '', '', ''),
+(30, 'jk22', 'jk22@gmail.com', '123', '', 'student', '', '', ''),
+(31, 'jk23', 'jk23@gmail.com', '123', '', 'student', '', '', ''),
+(32, 'jk24', 'jk24@gmail.com', '123', '', 'student', '', '', ''),
+(33, 'jk25', 'jk25@gmail.com', '123', '', 'student', '', '', ''),
+(34, 'jk26', 'jk26@gmail.com', '123', '', 'student', '', '', ''),
+(35, 'jk27', 'jk27@gmail.com', '123', '', 'student', '', '', ''),
+(36, 'jk28', 'jk28@gmail.com', '123', '', 'student', '', '', ''),
+(37, 'jk29', 'jk29@gmail.com', '123', '', 'student', '', '', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

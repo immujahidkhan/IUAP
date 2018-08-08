@@ -78,16 +78,23 @@ catch(PDOException $e)
     }
 
 }
+ include("pagination/function.php");
+ $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
+ $limit = 1; //if you want to dispaly 10 records per page then you have to change here
+ $startpoint = ($page * $limit) - $limit;
+ $statement = "course_enrolled "; //you have to pass your query over here
+
 if(isset($_POST['cnic']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `cnic` like '%$_POST[cnic]%'");	
+	//select * from {$statement} LIMIT {$startpoint} , {$limit}
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM {$statement} WHERE `cnic` like '$_POST[cnic]%' LIMIT {$startpoint} , {$limit}");
 }else{
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id' and status = ''");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM  {$statement} WHERE `by_`='$user_id' LIMIT {$startpoint} , {$limit}");
 }
 		
 if(isset($_GET['pId']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `p_id`='$_GET[pId]'");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `p_id`='$_GET[pId]' and status = ''");
 }
 include "assets/main_header.php";		
 ?>
@@ -103,14 +110,12 @@ include "assets/main_header.php";
     </thead>
     <tbody>
 	 <?php
-	 $course_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `by_`='$user_id'");
+	 $course_query = $class->fetchdata("SELECT * FROM `programs` WHERE `user_id`='$user_id' and p_status = 'Completed' and status = '1'");
 	 while($Datacourse_query = $course_query->fetch(PDO::FETCH_ASSOC))
 	 {
-	 $program_query= $class->fetchdata("SELECT * FROM `programs` WHERE id = '$Datacourse_query[p_id]'");
-	 $dataP1=$program_query->fetch(PDO::FETCH_ASSOC);
 	 ?>
 	 <tr>
-	 <td><a href="meritlist.php?pId=<?php echo $Datacourse_query['p_id'];?>"><?php echo $dataP1['title'];?></a></td>
+	 <td><a href="meritlist.php?pId=<?php echo $Datacourse_query['id'];?>"><?php echo $Datacourse_query['title'];?></a></td>
 	 </tr>
 	 <?php
 	 }
@@ -120,6 +125,11 @@ include "assets/main_header.php";
 </div>
 </div>
 <div class="col-md-9">
+<div id='pagingg'>
+<?php
+echo pagination($statement,$limit,$page);
+?>
+</div>
  <div class="table-responsive">
  <table class="table table-hover table-bordered">
     <thead>
@@ -176,20 +186,49 @@ include "assets/main_header.php";
 					echo $MeritData['ahq'];
 					echo $MeritData['aet'];
 					echo $MeritData['ait']."<br>";*/
+					$s_aggregate  ="";
 					if(empty($data_course_enrolled_query['E_total']) || empty($data_course_enrolled_query['I_total']) )
 					{
 						echo "Enter Interview Marks Or Entry Test Marks";
-					}else{
+					}
+					else
+					{
+					if(empty($SEDataP['ssc_max_marks']))
+					{
+						$SEDataP['ssc_max_marks'] = "1";
+						//echo "ssc";
+					}else if(empty($SEDataP['fa_max_marks']))
+					{
+						$SEDataP['fa_max_marks'] = "1";
+						//echo "fa";
+					}else if(empty($SEDataP['bs_max_marks']))
+					{
+						$SEDataP['bs_max_marks'] = "1";
+						//echo "bs";
+					}else if(empty($SEDataP['ms_max_marks']))
+					{
+						$SEDataP['ms_max_marks'] = "1";
+						//echo "ms";
+					}
 					echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
 					}?></td>
-					<td> 
-					 <form method="post" action="meritlist.php">
+					<td>
+<?php
+if($data_course_enrolled_query['status']=="selected")
+{
+	echo "selected";
+}else{
+?>					
+					<form method="post" action="meritlist.php">
 					<input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 					<input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>				   
 					<label class="checkbox-inline">
 					<input type="checkbox" name="selected" onChange="this.form.submit()" value="<?php $data_course_enrolled_query['user_id']?>">SELECT
 					</label>
 					</form>
+					<?php
+}
+?>
 					</td>
 					<?php
 			$admin_id = $data_course_enrolled_query['by_'];
@@ -201,7 +240,7 @@ include "assets/main_header.php";
 			//$data=$query->fetch(PDO::FETCH_ASSOC);
 		$query=$class->insert("INSERT INTO `meritlist`(`p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`) VALUES ('$p_name','$p_id','$s_email','$s_name','$s_cnic','$s_domicile','$s_aggregate','$admin_id','$s_id','')");
 			}else{
-		$query=$class->insert("UPDATE `meritlist` SET `s_cnic`='$s_cnic',`s_aggregate`='$s_aggregate' WHERE `p_id` = '$p_id' and `admin_id` = '$admin_id' and `s_id` = '$s_id'");		
+		$query=$class->insert("UPDATE `meritlist` SET `s_cnic`='$s_cnic',s_domicile = '$s_domicile',`s_aggregate`='$s_aggregate' WHERE `p_id` = '$p_id' and `admin_id` = '$admin_id' and `s_id` = '$s_id'");		
 			}
 			?>
                     </tr>
