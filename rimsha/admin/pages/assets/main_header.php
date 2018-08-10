@@ -56,8 +56,9 @@
 <div class="container">
 <div class="btn-group btn-group-justified">
   <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#ModelName" aria-hidden="true">Add New Program</a>
+  <a href="index.php" class="btn btn-primary">Programs</a>
   <a href="enroll.php" class="btn btn-primary">Enroll Students</a>
-  <a href="meritlist.php" class="btn btn-primary">Merit list</a>
+  <a href="meritlist.php" class="btn btn-primary">List</a>
   <a href="selected_students.php" class="btn btn-primary">Selected Students</a>
   <a href="notifications.php" class="btn btn-primary">Notification <span class="badge">
   <?php

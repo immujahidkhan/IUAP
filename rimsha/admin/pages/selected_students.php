@@ -43,7 +43,7 @@ catch(PDOException $e)
 		
 if(isset($_GET['pId']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `meritlist` WHERE `p_id`='$_GET[pId]' and status = 'selected' order by `s_aggregate` desc");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM `meritlist` WHERE  `admin_id`='$user_id' and `p_id`='$_GET[pId]' and status = 'selected' order by `s_aggregate` desc");
 }else{
 	$course_enrolled_query = $class->fetchdata("SELECT * FROM `meritlist` WHERE `admin_id`='$user_id' and status = 'selected' order by `s_aggregate` desc");
 }

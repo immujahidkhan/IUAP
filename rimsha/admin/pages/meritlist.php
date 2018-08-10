@@ -78,23 +78,17 @@ catch(PDOException $e)
     }
 
 }
- include("pagination/function.php");
- $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
- $limit = 30; //if you want to dispaly 10 records per page then you have to change here
- $startpoint = ($page * $limit) - $limit;
- $statement = "course_enrolled "; //you have to pass your query over here
 
 if(isset($_POST['cnic']))
 {
-	//select * from {$statement} LIMIT {$startpoint} , {$limit}
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM {$statement} WHERE `cnic` like '$_POST[cnic]%' LIMIT {$startpoint} , {$limit}");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM course_enrolled WHERE `cnic` like '$_POST[cnic]%'");
 }else{
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM  {$statement} WHERE `by_`='$user_id' LIMIT {$startpoint} , {$limit}");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM  course_enrolled WHERE `by_`='$user_id'");
 }
 		
 if(isset($_GET['pId']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM {$statement} WHERE `p_id`='$_GET[pId]' and `by_`='$user_id' LIMIT {$startpoint} , {$limit}");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM course_enrolled WHERE `p_id`='$_GET[pId]' and `by_`='$user_id'");
 }
 include "assets/main_header.php";		
 ?>
@@ -105,7 +99,7 @@ include "assets/main_header.php";
  <table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th>Program Name</th>
+        <th colspan="2">Program Name</th>
       </tr>
     </thead>
     <tbody>
@@ -116,6 +110,7 @@ include "assets/main_header.php";
 	 ?>
 	 <tr>
 	 <td><a href="meritlist.php?pId=<?php echo $Datacourse_query['id'];?>"><?php echo $Datacourse_query['title'];?></a></td>
+	 <td><a class="btn btn-info" href="generateMeritlist.php?pId=<?php echo $Datacourse_query['id'];?>">Generate Merit List</a></td>
 	 </tr>
 	 <?php
 	 }
@@ -125,11 +120,7 @@ include "assets/main_header.php";
 </div>
 </div>
 <div class="col-md-9">
-<div id='pagingg'>
-<?php
-echo pagination($statement,$limit,$page);
-?>
-</div>
+
  <div class="table-responsive">
  <table class="table table-hover table-bordered">
     <thead>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2018 at 10:08 PM
+-- Generation Time: Aug 10, 2018 at 07:51 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -277,7 +277,7 @@ CREATE TABLE IF NOT EXISTS `meritlist` (
   `s_id` int(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `meritlist`
