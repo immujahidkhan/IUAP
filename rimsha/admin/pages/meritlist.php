@@ -80,7 +80,7 @@ catch(PDOException $e)
 }
  include("pagination/function.php");
  $page = (int) (!isset($_GET["page"]) ? 1 : $_GET["page"]);
- $limit = 1; //if you want to dispaly 10 records per page then you have to change here
+ $limit = 30; //if you want to dispaly 10 records per page then you have to change here
  $startpoint = ($page * $limit) - $limit;
  $statement = "course_enrolled "; //you have to pass your query over here
 
@@ -94,7 +94,7 @@ if(isset($_POST['cnic']))
 		
 if(isset($_GET['pId']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM `course_enrolled` WHERE `p_id`='$_GET[pId]' and status = ''");
+	$course_enrolled_query = $class->fetchdata("SELECT * FROM {$statement} WHERE `p_id`='$_GET[pId]' and `by_`='$user_id' LIMIT {$startpoint} , {$limit}");
 }
 include "assets/main_header.php";		
 ?>
