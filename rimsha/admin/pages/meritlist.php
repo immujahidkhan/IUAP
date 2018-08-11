@@ -110,7 +110,7 @@ include "assets/main_header.php";
 	 ?>
 	 <tr>
 	 <td><a href="meritlist.php?pId=<?php echo $Datacourse_query['id'];?>"><?php echo $Datacourse_query['title'];?></a></td>
-	 <td><a class="btn btn-info" href="generateMeritlist.php?pId=<?php echo $Datacourse_query['id'];?>">Generate Merit List</a></td>
+	 <td><a class="btn btn-info" href="generateMeritlist.php?pId=<?php echo $Datacourse_query['id'];?>&page=1">Generate Merit List</a></td>
 	 </tr>
 	 <?php
 	 }
@@ -186,23 +186,27 @@ include "assets/main_header.php";
 					{
 					if(empty($SEDataP['ssc_max_marks']))
 					{
-						$SEDataP['ssc_max_marks'] = "1";
+						$SEDataP['ssc_max_marks'] = 1;
 						//echo "ssc";
-					}else if(empty($SEDataP['fa_max_marks']))
+					}
+					if(empty($SEDataP['fa_max_marks']))
 					{
-						$SEDataP['fa_max_marks'] = "1";
+						$SEDataP['fa_max_marks'] = 1;
 						//echo "fa";
-					}else if(empty($SEDataP['bs_max_marks']))
+					}
+					if(empty($SEDataP['bs_max_marks']))
 					{
-						$SEDataP['bs_max_marks'] = "1";
+						$SEDataP['bs_max_marks'] = 1;
 						//echo "bs";
-					}else if(empty($SEDataP['ms_max_marks']))
+					}
+					if(empty($SEDataP['ms_max_marks']))
 					{
-						$SEDataP['ms_max_marks'] = "1";
+						$SEDataP['ms_max_marks'] = 1;
 						//echo "ms";
 					}
-					echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
-					}?></td>
+echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
+					}?>
+					</td>
 					<td>
 <?php
 if($data_course_enrolled_query['status']=="selected")

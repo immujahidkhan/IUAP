@@ -2,28 +2,27 @@
 session_start();
 include "../../config.php";
 if(empty($_SESSION['id']))
-		{
-		?>
-		<script> window.location.href="login.php";</script>
-		<?php 
-		}else{
-			$user_id = $_SESSION['id'];
-		}
+{
+?>
+<script> window.location.href="login.php";</script>
+<?php 
+}else{
+	$user_id = $_SESSION['id'];
+}
 
-		$query= $class->fetchdata(" select * from users where id='$user_id'");
-		$data=$query->fetch(PDO::FETCH_ASSOC);
-		if($data['role']=="student")
-		{
-		?>
-		<script> window.location.href="logout.php";</script>
-		<?php 	
-		}
+$query= $class->fetchdata(" select * from users where id='$user_id'");
+$data=$query->fetch(PDO::FETCH_ASSOC);
+if($data['role']=="student")
+{
+?>
+<script> window.location.href="logout.php";</script>
+<?php 	
+}
 if(isset($_POST['selected']))
-		{
-		$query=$class->insert("UPDATE `meritlist` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `s_id` = '$_POST[user_id]'");		
-		$query=$class->insert("UPDATE `course_enrolled` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `user_id` = '$_POST[user_id]'");		
-		
-		}
+{
+	$query=$class->insert("UPDATE `meritlist` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `s_id` = '$_POST[user_id]'");		
+	$query=$class->insert("UPDATE `course_enrolled` SET `status`='selected' WHERE `p_id` = '$_POST[p_id]' and `user_id` = '$_POST[user_id]'");
+}
 		
 
 if(isset($_POST['add_done']))
@@ -46,14 +45,22 @@ catch(PDOException $e)
 
 }
 
-$perpage = 30;
-
+$course_count = $class->fetchdata("SELECT * FROM `admin_criteria_list` WHERE `p_id`='$_GET[pId]' and `user_id`='$user_id'");
+$selected_count = $class->fetchdata("SELECT * FROM `meritlist` WHERE `p_id`='$_GET[pId]' and `admin_id`='$user_id' and status='selected'");
+$selectedCount = $selected_count->rowCount();
+$countData = $course_count->fetch(PDO::FETCH_ASSOC);
+$perpage = $countData['t_seats'];
+//$perpage = 10;
+$secondPerpage = $perpage-$selectedCount;
+//echo $_GET["page"];
 if(isset($_GET["page"])){
 $page = intval($_GET["page"]);
+	
 }
 else {
 $page = 1;
 }
+
 $calc = $perpage * $page;
 $start = $calc - $perpage;
 //$result = mysqli_query($conn, "select * from post Limit $start, $perpage");
@@ -61,7 +68,20 @@ $start = $calc - $perpage;
 		
 if(isset($_GET['pId']))
 {
-	$course_enrolled_query = $class->fetchdata("SELECT * FROM meritlist WHERE `p_id`='$_GET[pId]' and `admin_id`='$user_id' order by s_aggregate desc Limit $start, $perpage");
+$course_Merit_query = $class->fetchdata("SELECT * FROM meritlist WHERE `p_id`='$_GET[pId]' and `admin_id`='$user_id' order by s_aggregate desc Limit $start, $perpage");
+while($MeritGenerate=$course_Merit_query->fetch(PDO::FETCH_ASSOC))
+{
+if($page==1)
+{
+	$class->insert("UPDATE `meritlist` SET `merit_list_no`='1' WHERE id = '$MeritGenerate[id]'");
+}else{
+	$class->insert("UPDATE `meritlist` SET `merit_list_no`='$page' WHERE id = '$MeritGenerate[id]'");
+}
+}if($page>1)
+{
+$perpage = $secondPerpage;
+}
+$course_enrolled_query = $class->fetchdata("SELECT * FROM meritlist WHERE merit_list_no='$_GET[page]' and `p_id`='$_GET[pId]' and `admin_id`='$user_id' order by s_aggregate desc Limit $perpage");
 }
 include "assets/main_header.php";		
 ?>
@@ -70,94 +90,8 @@ include "assets/main_header.php";
 
 <div class="row">
 <div class="col-md-6">
-<ul class="pagination">
-
-
-<?php
-
-if(isset($page))
-
-{
-
-$result = $class->fetchdata("SELECT Count(*) As Total FROM  meritlist WHERE `admin_id`='$user_id' and p_id = '$_GET[pId]'");
-//$result = mysqli_query($conn,"select Count(*) As Total from post");
-
-$rows = $result->rowCount();
-
-if($rows)
-
-{
-
-$rs = $result->fetch(PDO::FETCH_ASSOC);
-
-$total = $rs["Total"];
-
-}
-
-$totalPages = ceil($total / $perpage);
-
-if($page <=1 ){
-
-//echo "<span id='page_links' style='font-weight: bold;'>Prev</span>";
-
-}
-
-else
-
-{
-
-$j = $page - 1;
-
-//echo "<span><a id='page_a_link' href='generateMeritlist.php?pId=$_GET['pId']&page=$j'>< Prev</a></span>";
-
-}
-
-for($i=1; $i <= $totalPages; $i++)
-
-{
-
-if($i<>$page)
-
-{
-
-//echo "<span><a id='page_a_link' href='generateMeritlist.php?pId=$_GET['pId']&page=$i'>$i</a></span>";
-echo "<li><a href='generateMeritlist.php?pId=$_GET[pId]&page=$i'>Generate Merit List $i</a></li>";
-}
-
-else
-
-{
-
-//echo "<span id='page_links' style='font-weight: bold;'>$i</span>";
-echo "<li><a href='generateMeritlist.php?pId=$_GET[pId]&page=$i'>Generate Merit List $i</a></li>";
-
-}
-
-}
-
-if($page == $totalPages )
-
-{
-
-//echo "<span id='page_links' style='font-weight: bold;'>Next ></span>";
-
-}
-
-else
-
-{
-
-$j = $page + 1;
-
-//echo "<span><a id='page_a_link' href='generateMeritlist.php?pId=$_GET['pId']&page=$j'>Next</a></span>";
-
-}
-
-}
-
-?>
-
-
+<ul class="pagination <?php if($course_Merit_query->rowCount()==0){echo "hidden";}?>">
+<li><a target="_blank" href="generateMeritlist.php?pId=<?php echo $_GET['pId'];?>&page=<?php echo $page+1;?>">Generate Merit List <?php echo $page+1;?></a></li>	
 </ul>
 </div>
 <div class="col-md-6">
@@ -207,7 +141,8 @@ echo "<span><span class='badge badge-warning'>$DataSeats[handicaped]</span> Hand
  <table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th>Program Name</th>
+        <th>Id</th>
+		<th>Program Name</th>
         <th>Student Name</th>
 		<th>Student Email</th>
 		<th>Student CNIC</th>
@@ -222,7 +157,8 @@ echo "<span><span class='badge badge-warning'>$DataSeats[handicaped]</span> Hand
 		{
 		?>
 									<tr class="odd gradeX">
-                                        <td><?php echo $p_name = $data_course_enrolled_query['p_name'];?></td>
+                                        <td><?php echo $data_course_enrolled_query['id'];?></td>
+										<td title="<?php echo $data_course_enrolled_query['s_id'];?>"><?php echo $p_name = $data_course_enrolled_query['p_name'];?></td>
                                         <td><?php echo $s_name = $data_course_enrolled_query['s_name'];?></td>
                                         <td><?php echo $s_email = $data_course_enrolled_query['s_email'];?></td>
 										<td><?php echo $s_cnic = $data_course_enrolled_query['s_cnic'];?></td>
@@ -235,11 +171,11 @@ if($data_course_enrolled_query['status']=="selected")
 	echo "selected";
 }else{
 ?>					
-					<form method="post" action="generateMeritlist.php?pId=<?php echo $_GET['pId'];?>">
-					<input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
-					<input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>				   
+					<form method="post" action="generateMeritlist.php?pId=<?php echo $_GET['pId'];?>&page=<?php echo $_GET['page'];?>">
+					<input type="hidden" name="p_id" value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
+					<input type="hidden" name="user_id" value="<?php echo $data_course_enrolled_query['s_id'];?>"/>				   
 					<label class="checkbox-inline">
-					<input type="checkbox" name="selected" onChange="this.form.submit()" value="<?php $data_course_enrolled_query['user_id']?>">SELECT
+					<input type="checkbox" name="selected" onChange="this.form.submit()" value="<?php $data_course_enrolled_query['s_id']?>">SELECT
 					</label>
 					</form>
 					<?php

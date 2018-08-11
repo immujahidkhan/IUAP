@@ -163,7 +163,16 @@ include "assets/main_header.php";
                                        <td>
 										<div class="form-group row">
 										<div class="col-xs-6">
-										 <form method="post" action="enroll.php">
+										<?php
+										if(isset($_GET['pId']))
+										{?>
+										<form method="post" action="enroll.php?pId=<?php echo $_GET['pId']?>">	
+										<?php
+										}else{?>
+										<form method="post" action="enroll.php">	
+										<?php
+										}
+										?>
 									   <input type="text" class="form-control"	name="testNO" required 	value="<?php echo $data_course_enrolled_query['marks'];?>" placeholder="Obtained Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
@@ -171,7 +180,16 @@ include "assets/main_header.php";
 									   </form>
 										</div>
 										<div class="col-xs-6">
-										 <form method="post" action="enroll.php">
+										<?php
+										if(isset($_GET['pId']))
+										{?>
+										<form method="post" action="enroll.php?pId=<?php echo $_GET['pId']?>">	
+										<?php
+										}else{?>
+										<form method="post" action="enroll.php">	
+										<?php
+										}
+										?>
 									   <input type="text" class="form-control"	name="TotalsEntryTest" required 	value="<?php echo $data_course_enrolled_query['E_total'];?>" placeholder="Totals Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
@@ -183,7 +201,16 @@ include "assets/main_header.php";
 									  <td>
 										<div class="form-group row">
 										<div class="col-xs-6">
-										 <form method="post" action="enroll.php">
+										<?php
+										if(isset($_GET['pId']))
+										{?>
+										<form method="post" action="enroll.php?pId=<?php echo $_GET['pId']?>">	
+										<?php
+										}else{?>
+										<form method="post" action="enroll.php">	
+										<?php
+										}
+										?>
 									   <input type="text" class="form-control"	name="interviewNO" required 	value="<?php echo $data_course_enrolled_query['interview_marks'];?>" placeholder="Obtained Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
@@ -191,7 +218,16 @@ include "assets/main_header.php";
 									   </form>
 										</div>
 										<div class="col-xs-6">
-										 <form method="post" action="enroll.php">
+										<?php
+										if(isset($_GET['pId']))
+										{?>
+										<form method="post" action="enroll.php?pId=<?php echo $_GET['pId']?>">	
+										<?php
+										}else{?>
+										<form method="post" action="enroll.php">	
+										<?php
+										}
+										?>
 									   <input type="text" class="form-control"	name="TotalsInterviewTest" required 	value="<?php echo $data_course_enrolled_query['I_total'];?>" placeholder="Totals Marks"/>
 									   <input type="hidden" name="p_id"   	value="<?php echo $data_course_enrolled_query['p_id'];?>"/>
 									   <input type="hidden" name="user_id" 	value="<?php echo $data_course_enrolled_query['user_id'];?>"/>
