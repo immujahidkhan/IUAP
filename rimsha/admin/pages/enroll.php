@@ -149,18 +149,26 @@ include "assets/main_header.php";
 									$queryP= $class->fetchdata(" select * from admin_p_detail where p_id='$data_course_enrolled_query[p_id]'");
 									$dataP=$queryP->fetch(PDO::FETCH_ASSOC);
 									
+									$querySeats= $class->fetchdata(" select * from admin_e_criteria where p_id='$data_course_enrolled_query[p_id]'");
+									$SeatsData=$querySeats->fetch(PDO::FETCH_ASSOC);
+									
 									$Userquery= $class->fetchdata(" select * from users where id='$data_course_enrolled_query[user_id]'");
 									$Userdata=$Userquery->fetch(PDO::FETCH_ASSOC);
 									
 									$query_student_p_detail= $class->fetchdata("SELECT * FROM `student_p_detail` where user_id='$data_course_enrolled_query[user_id]'");
 									$CninData=$query_student_p_detail->fetch(PDO::FETCH_ASSOC);
+									
 									?>
 									<tr class="odd gradeX">
                                         <td><?php echo $dataP['uni_program'];?></td>
                                         <td><?php echo $Userdata['name'];?></td>
                                         <td><?php echo $Userdata['email'];?></td>
 										<td><?php echo $data_course_enrolled_query['cnic'];?></td>
-                                       <td>
+                                    <?php
+									   if($SeatsData['type']=="enteryTest")
+									{
+									?>
+									   <td>
 										<div class="form-group row">
 										<div class="col-xs-6">
 										<?php
@@ -236,9 +244,12 @@ include "assets/main_header.php";
 										</div>
 										</div>
 									   </td>
+									   <?php
+									}
+									?>
                                     </tr>
 									<?php
-									}
+		}
 									?>
     </tbody>
   </table>

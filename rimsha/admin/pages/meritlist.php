@@ -150,6 +150,9 @@ include "assets/main_header.php";
 									$queryP= $class->fetchdata(" select * from admin_p_detail where p_id='$data_course_enrolled_query[p_id]'");
 									$dataP=$queryP->fetch(PDO::FETCH_ASSOC);
 									
+									$querySeats= $class->fetchdata(" select * from admin_e_criteria where p_id='$data_course_enrolled_query[p_id]'");
+									$SeatsData=$querySeats->fetch(PDO::FETCH_ASSOC);
+									
 									$SEquery= $class->fetchdata("SELECT * FROM `student_e_detail` where user_id='$data_course_enrolled_query[user_id]'");
 									$SEDataP=$SEquery->fetch(PDO::FETCH_ASSOC);
 									
@@ -178,6 +181,8 @@ include "assets/main_header.php";
 					echo $MeritData['aet'];
 					echo $MeritData['ait']."<br>";*/
 					$s_aggregate  ="";
+					if($SeatsData['type']=="enteryTest")
+					{					
 					if(empty($data_course_enrolled_query['E_total']) || empty($data_course_enrolled_query['I_total']) )
 					{
 						echo "Enter Interview Marks Or Entry Test Marks";
@@ -205,7 +210,40 @@ include "assets/main_header.php";
 						//echo "ms";
 					}
 echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
-					}?>
+					}
+					}else{
+					if(empty($data_course_enrolled_query['E_total']))
+					{
+						$data_course_enrolled_query['E_total'] = 1;
+					}
+					if(empty($data_course_enrolled_query['I_total']))
+					{
+						$data_course_enrolled_query['I_total'] = 1;
+					}
+					if(empty($SEDataP['ssc_max_marks']))
+					{
+						$SEDataP['ssc_max_marks'] = 1;
+						//echo "ssc";
+					}
+					if(empty($SEDataP['fa_max_marks']))
+					{
+						$SEDataP['fa_max_marks'] = 1;
+						//echo "fa";
+					}
+					if(empty($SEDataP['bs_max_marks']))
+					{
+						$SEDataP['bs_max_marks'] = 1;
+						//echo "bs";
+					}
+					if(empty($SEDataP['ms_max_marks']))
+					{
+						$SEDataP['ms_max_marks'] = 1;
+						//echo "ms";
+					}
+echo $s_aggregate=(round(($SEDataP['ssc_obtained']/$SEDataP['ssc_max_marks']*$MeritData['af_matric'])+($SEDataP['fa_obtained']/$SEDataP['fa_max_marks']*$MeritData['af_inter'])+($SEDataP['bs_obtained']/$SEDataP['bs_max_marks']*$MeritData['af_bachlor'])+($SEDataP['ms_obtained']/$SEDataP['ms_max_marks']*$MeritData['af_master'])+ ($data_course_enrolled_query['marks']/$data_course_enrolled_query['E_total']*$MeritData['aet']) +($data_course_enrolled_query['interview_marks']/$data_course_enrolled_query['I_total']*$MeritData['ait']),3));
+										
+					}
+					?>
 					</td>
 					<td>
 <?php
