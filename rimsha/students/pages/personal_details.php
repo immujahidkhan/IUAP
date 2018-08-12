@@ -16,15 +16,17 @@ $dob= $_POST['day']."-".$_POST['month']."-".$_POST['year'];
 $gender= $_POST['gender'];
 $nationality= $_POST['nationality'];
 $domicile= $_POST['domicile'];
+$domicileDistrict = $_POST['domicileDistrict'];
 $cnic= $_POST['cnic'];
 $mobile= $_POST['mobile'];
 $emailId= $_POST['emailId'];
 $hq= $_POST['hq'];
 $handicaped = $_POST['handicaped'];
 $sm = $_POST['sm'];
+
 		
-$query=$class->insert("INSERT INTO `student_p_detail` ( `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `cnic`, `mobile`, `email`,`hq`,`handicaped`,`sm`) 
-												VALUES ('$user_id','$image','$name','$f_name','$dob','$gender','$nationality','$domicile','$cnic','$mobile','$emailId','$hq','$handicaped','$sm')");
+$query=$class->insert("INSERT INTO `student_p_detail`(`user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `domicileDistrict`,`cnic`, `mobile`, `email`,`hq`,`handicaped`,`sm`) 
+												VALUES ('$user_id','$image','$name','$f_name','$dob','$gender','$nationality','$domicile','$domicileDistrict','$cnic','$mobile','$emailId','$hq','$handicaped','$sm')");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -89,6 +91,7 @@ $dob= $_POST['day']."-".$_POST['month']."-".$_POST['year'];
 $gender= $_POST['gender'];
 $nationality= $_POST['nationality'];
 $domicile= $_POST['domicile'];
+$domicileDistrict = $_POST['domicileDistrict'];
 $cnic= $_POST['cnic'];
 $mobile= $_POST['mobile'];
 $emailId= $_POST['emailId'];
@@ -99,7 +102,7 @@ if(empty($image))
 {
 	$image = $Details['img'];
 }
-$query=$class->insert("UPDATE `student_p_detail` set `img` = '$image', `name` = '$name', `f_name` = '$f_name', `dob` = '$dob', `gender` = '$gender', `nationality` = '$nationality', `domicile` = '$domicile', `cnic` = '$cnic', `mobile` = '$mobile', `email` = '$emailId' , `hq` = '$hq' , `handicaped` = '$handicaped' , `sm` = '$sm' where `user_id`='$user_id'");
+$query=$class->insert("UPDATE `student_p_detail` set `img` = '$image', `name` = '$name', `f_name` = '$f_name', `dob` = '$dob', `gender` = '$gender', `nationality` = '$nationality', `domicile` = '$domicile',`domicileDistrict`='$domicileDistrict', `cnic` = '$cnic', `mobile` = '$mobile', `email` = '$emailId' , `hq` = '$hq' , `handicaped` = '$handicaped' , `sm` = '$sm' where `user_id`='$user_id'");
 			if($query){
 			//$class->redirect("program_details.php?pId=1");
 			?>
@@ -482,6 +485,26 @@ $pieces[2]; // piece2
 	</div>
 	</div>
 	</div>
+	 
+	 
+	  <div class="form-group">
+  <label class="control-label col-sm-1" for="nationality"><span class="star">*</span>Domicile District:</label>
+  <div class="row">
+  <div class="col-md-2">
+  <select class="form-control" name="domicileDistrict" required>
+    <option value="">Domicile District</option>
+	<option value="Balochistan" <?php if($Details['domicileDistrict']=='Balochistan'){ echo 'selected';}?>>Balochistan</option>
+	<option value="Federal" <?php if($Details['domicileDistrict']=='Federal'){ echo 'selected';}?>>Federal</option>
+	<option value="Fata" <?php if($Details['domicileDistrict']=='Fata'){ echo 'selected';}?>>Fata</option>
+	<option value="KPK"<?php if($Details['domicileDistrict']=='KPK'){ echo 'selected';}?>>KPK</option>
+	<option value="Punjab" <?php if($Details['domicileDistrict']=='Punjab'){ echo 'selected';}?>>Punjab</option>
+	<option value="Sindh" <?php if($Details['domicileDistrict']=='Sindh'){ echo 'selected';}?>>Sindh</option>
+
+	</select>
+	</div>
+	</div>
+	</div>
+	 
 	 <div class="form-group">
     <label class="control-label col-sm-1" for=""><span class="star">*</span>CNIC:</label>
 	  <div class="col-sm-4">

@@ -136,7 +136,7 @@ include "assets/main_header.php";
         <th>Student Name</th>
 		<th>Student Email</th>
 		<th>Student CNIC</th>
-		<th>Domicile</th>
+		<th>Domicile District</th>
 		<th>Aggregate</th>
 		<th>Action</th>
       </tr>
@@ -167,7 +167,7 @@ include "assets/main_header.php";
                                         <td><?php echo $s_name = $Userdata['name'];?></td>
                                         <td><?php echo $s_email = $Userdata['email'];?></td>
 										<td><?php echo $s_cnic = $data_course_enrolled_query['cnic'];?></td>
-										<td><?php echo $s_domicile = $CninData['domicile'];?></td>
+										<td><?php echo $s_domicile = $CninData['domicileDistrict'];?></td>
 									    <td>
 										<?php
 					$queryMerit= $class->fetchdata("SELECT * FROM `admin_e_criteria` where p_id='$data_course_enrolled_query[p_id]'");

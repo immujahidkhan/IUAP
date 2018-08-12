@@ -158,6 +158,10 @@ include "assets/main_header.php";
 									$query_student_p_detail= $class->fetchdata("SELECT * FROM `student_p_detail` where user_id='$data_course_enrolled_query[user_id]'");
 									$CninData=$query_student_p_detail->fetch(PDO::FETCH_ASSOC);
 									
+									//updating
+									$class->insert("UPDATE `course_enrolled` SET `cnic`='$CninData[cnic]' where user_id='$data_course_enrolled_query[user_id]'");
+									//
+									
 									?>
 									<tr class="odd gradeX">
                                         <td><?php echo $dataP['uni_program'];?></td>

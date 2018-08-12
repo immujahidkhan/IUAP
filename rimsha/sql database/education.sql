@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 11, 2018 at 11:13 PM
+-- Generation Time: Aug 12, 2018 at 10:45 PM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -305,23 +305,23 @@ CREATE TABLE IF NOT EXISTS `meritlist` (
 --
 
 INSERT INTO `meritlist` (`id`, `p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`, `merit_list_no`) VALUES
-(1, 'Bs Chemistry', 8, 'jk1@gmail.com', 'jk1', '33098978787878', 'Bahawalnagar', '51.791', 4, 9, '', 2),
-(2, 'Bs Chemistry', 8, 'jk3@gmail.com', 'jk3', '33098978787878', 'D.G Khan', '75.104', 4, 11, '', 1),
-(3, 'Bs Chemistry', 8, 'izza@gmail.com', 'izza', '6110198527482', 'Federal', '75.654', 4, 38, '', 1),
-(4, 'Bs Chemistry', 8, 'alisha@gmail.com', 'alisha', '6110198527482', 'Federal', '65.721', 4, 39, '', 2),
-(5, 'Bs Chemistry', 8, 'nasir@gmail.com', 'nasir', '6110189737762', 'Federal', '78.864', 4, 41, '', 1),
-(6, 'Bs Chemistry', 8, 'sahir@gmail.com', 'sahir', '6110198527482', 'Federal', '71.045', 4, 42, '', 1),
-(7, 'Bs Chemistry', 8, 'anum@gmail.com', 'anum', '6110189737762', 'Federal', '73.358', 4, 43, '', 1),
-(8, 'Bs Chemistry', 8, 'amir@gmail.com', 'amir', '6110198527482', 'Federal', '67.055', 4, 44, '', 2),
-(9, 'Bs Chemistry', 8, 'husna@gmail.com', 'husna', '6110189737762', 'Lahore', '70.939', 4, 45, '', 2),
-(10, 'Bs Chemistry', 8, 'preesa@gmail.com', 'preesa', '6110198527482', 'Lahore', '73.289', 4, 46, '', 1),
-(11, 'Bs Chemistry', 8, 'ayyan@gmail.com', 'ayyan', '6110189737762', 'Lahore', '74.771', 4, 47, '', 1),
-(12, 'Bs Chemistry', 8, 'sameer@gmail.com', 'sameer', '6110198527482', 'Jhelum', '79.39', 4, 48, '', 1),
-(13, 'Bs Chemistry', 8, 'alia@gmail.com', 'alia', '6110198527482', 'Jhang', '72.996', 4, 49, '', 2),
-(14, 'Bs Chemistry', 8, 'ayesha@gmail.com', 'ayesha', '6110178546748', 'Lahore', '70.883', 4, 50, '', 2),
-(15, 'Bs Chemistry', 8, 'sidra@gmail.com', 'sidra', '6110189737762', 'Attock', '80.844', 4, 51, 'selected', 1),
-(16, 'Bs Chemistry', 8, 'sameena@gmail.com', 'sameena', '6110178546748', 'Attock', '80.844', 4, 52, '', 1),
-(17, 'Bs Computer Science', 1, 'jk1@gmail.com', 'jk1', '33098978787878', 'Bahawalnagar', '', 4, 9, '', 0);
+(1, 'Bs Chemistry', 8, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '51.791', 4, 9, '', 0),
+(2, 'Bs Chemistry', 8, 'jk3@gmail.com', 'jk3', '33098978787878', 'Punjab', '75.104', 4, 11, '', 0),
+(3, 'Bs Chemistry', 8, 'izza@gmail.com', 'izza', '6110198527482', 'Punjab', '75.654', 4, 38, '', 0),
+(4, 'Bs Chemistry', 8, 'alisha@gmail.com', 'alisha', '6110198527482', 'Punjab', '65.721', 4, 39, '', 0),
+(5, 'Bs Chemistry', 8, 'nasir@gmail.com', 'nasir', '6110189737762', 'Punjab', '78.864', 4, 41, '', 0),
+(6, 'Bs Chemistry', 8, 'sahir@gmail.com', 'sahir', '6110198527482', 'Punjab', '71.045', 4, 42, '', 0),
+(7, 'Bs Chemistry', 8, 'anum@gmail.com', 'anum', '6110189737762', 'Punjab', '73.358', 4, 43, '', 0),
+(8, 'Bs Chemistry', 8, 'amir@gmail.com', 'amir', '6110198527482', 'Punjab', '67.055', 4, 44, '', 0),
+(9, 'Bs Chemistry', 8, 'husna@gmail.com', 'husna', '6110189737762', 'Federal', '70.939', 4, 45, '', 0),
+(10, 'Bs Chemistry', 8, 'preesa@gmail.com', 'preesa', '6110198527482', 'Federal', '73.289', 4, 46, '', 0),
+(11, 'Bs Chemistry', 8, 'ayyan@gmail.com', 'ayyan', '6110189737762', 'Federal', '74.771', 4, 47, '', 0),
+(12, 'Bs Chemistry', 8, 'sameer@gmail.com', 'sameer', '6110198527482', 'Federal', '79.39', 4, 48, '', 0),
+(13, 'Bs Chemistry', 8, 'alia@gmail.com', 'alia', '6110198527482', 'Federal', '72.996', 4, 49, '', 0),
+(14, 'Bs Chemistry', 8, 'ayesha@gmail.com', 'ayesha', '6110178546748', 'Federal', '70.883', 4, 50, '', 0),
+(15, 'Bs Chemistry', 8, 'sidra@gmail.com', 'sidra', '6110189737762', 'Federal', '80.844', 4, 51, '', 0),
+(16, 'Bs Chemistry', 8, 'sameena@gmail.com', 'sameena', '6110178546748', 'Federal', '80.844', 4, 52, '', 0),
+(17, 'Bs Computer Science', 1, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '', 4, 9, '', 0);
 
 -- --------------------------------------------------------
 
@@ -545,6 +545,7 @@ CREATE TABLE IF NOT EXISTS `student_p_detail` (
   `gender` varchar(255) NOT NULL,
   `nationality` varchar(255) NOT NULL,
   `domicile` varchar(255) NOT NULL,
+  `domicileDistrict` varchar(255) NOT NULL,
   `hq` varchar(255) NOT NULL,
   `cnic` varchar(255) NOT NULL,
   `mobile` varchar(255) NOT NULL,
@@ -558,25 +559,25 @@ CREATE TABLE IF NOT EXISTS `student_p_detail` (
 -- Dumping data for table `student_p_detail`
 --
 
-INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `hq`, `cnic`, `mobile`, `email`, `handicaped`, `sm`) VALUES
-(3, 6, '764070681_l.gif', 'Student', 'saleem', '2-FEB-1961', 'Male', 'Pakistani', 'Bahawalpur', 'no', '33098978787878', '03148767873', 'student@gmail.com', 'no', 'no'),
-(4, 9, '', 'jk1', 'saleem', '2-FEB-1961', 'Male', 'Others', 'Bahawalnagar', 'yes', '33098978787878', '03148767873', 'jk1@gmail.com', 'no', 'no'),
-(5, 10, '', 'jk2', 'saleem', '2-FEB-1961', 'Female', 'Others', 'Bahawalnagar', 'no', '33098978787878', '03148767873', 'jk2@gmail.com', 'no', 'no'),
-(6, 11, '', 'jk3', 'saleem', '2-FEB-1964', 'Female', 'Others', 'D.G Khan', 'no', '33098978787878', '03148767873', 'jk3@gmail.com', 'no', 'no'),
-(7, 38, '', 'izza', 'shokat ali', '12-FEB-1996', 'Female', 'Pakistani', 'Federal', 'no', '6110198527482', '03360112333', 'izza@gmail.com', 'no', 'no'),
-(8, 39, '', 'alisha', 'shahzad ali', '11-SEP-1996', 'Female', 'Pakistani', 'Federal', 'no', '6110198527482', '03360112333', 'alisha@gmail.com', 'no', 'no'),
-(9, 41, '', 'nasir', 'altaf ali khan', '8-OCT-1996', 'Male', 'Pakistani', 'Federal', 'no', '6110189737762', '03005524226', 'nasir@gmail.com', 'no', 'no'),
-(10, 42, '', 'sahir', 'alim khan', '11-SEP-1996', 'Male', 'Pakistani', 'Federal', 'no', '6110198527482', '03005524226', 'sahir@gmail.com', 'no', 'no'),
-(11, 43, '', 'anum', 'ali khan', '9-JUN-1996', 'Female', 'Pakistani', 'Federal', 'no', '6110189737762', '03005524226', 'anum@gmail.com', 'no', 'no'),
-(12, 44, '', 'amir', 'shokat ali', '12-OCT-1996', 'Male', 'Pakistani', 'Federal', 'no', '6110198527482', '03360112333', 'amir@gmail.com', 'no', 'no'),
-(13, 45, '', 'husna', 'hasan ali', '11-SEP-1996', 'Female', 'Pakistani', 'Lahore', 'no', '6110189737762', '03360112333', 'husna@gmail.com', 'no', 'no'),
-(14, 46, '', 'preesa', 'fiayaz siddiqui', '10-AUG-1996', 'Female', 'Pakistani', 'Lahore', 'no', '6110198527482', '03360112333', 'preesa@gmail.com', 'no', 'no'),
-(15, 47, '', 'ayyan', 'shokat ali', '11-JUN-1996', 'Male', 'Pakistani', 'Lahore', 'no', '6110189737762', '03005524226', 'ayyan@gmail.com', 'no', 'no'),
-(16, 48, '', 'sameer', 'shokat ali', '13-SEP-1996', 'Male', 'Pakistani', 'Jhelum', 'no', '6110198527482', '03360112333', 'sameer@gmail.com', 'no', 'no'),
-(17, 49, '', 'alia', 'fiayaz siddiqui', '11-AUG-1996', 'Female', 'Pakistani', 'Jhang', 'no', '6110198527482', '03005524226', 'alia@gmail.com', 'no', 'no'),
-(18, 50, '', 'ayesha', 'jamil siddiqui', '12-JUL-1996', 'Female', 'Pakistani', 'Lahore', 'no', '6110178546748', '03005524226', 'ayesha@gmail.com', 'no', 'no'),
-(19, 51, '', 'sidra', 'altaf ali khan', '10-OCT-1996', 'Female', 'Pakistani', 'Attock', 'no', '6110189737762', '03360112333', 'sidra@gmail.com', 'no', 'no'),
-(20, 52, '', 'sameena', 'fiayaz siddiqui', '1-MAR-1996', 'Female', 'Pakistani', 'Attock', 'no', '6110178546748', '03005524226', 'sameena@gmail.com', 'no', 'no');
+INSERT INTO `student_p_detail` (`id`, `user_id`, `img`, `name`, `f_name`, `dob`, `gender`, `nationality`, `domicile`, `domicileDistrict`, `hq`, `cnic`, `mobile`, `email`, `handicaped`, `sm`) VALUES
+(3, 6, '764070681_l.gif', 'Student', 'saleem', '2-FEB-1961', 'Male', 'Pakistani', 'Bahawalpur', 'Federal', 'no', '33098978787878', '03148767873', 'student@gmail.com', 'no', 'no'),
+(4, 9, '', 'jk1', 'saleem', '2-FEB-1961', 'Male', 'Others', 'Bahawalnagar', 'Federal', 'yes', '33098978787878', '03148767873', 'jk1@gmail.com', 'no', 'no'),
+(5, 10, '', 'jk2', 'saleem', '2-FEB-1961', 'Female', 'Others', 'Bahawalnagar', 'Federal', 'no', '33098978787878', '03148767873', 'jk2@gmail.com', 'no', 'no'),
+(6, 11, '', 'jk3', 'saleem', '2-FEB-1964', 'Female', 'Others', 'D.G Khan', 'Punjab', 'no', '33098978787878', '03148767873', 'jk3@gmail.com', 'no', 'no'),
+(7, 38, '', 'izza', 'shokat ali', '12-FEB-1996', 'Female', 'Pakistani', 'Federal', 'Punjab', 'no', '6110198527482', '03360112333', 'izza@gmail.com', 'no', 'no'),
+(8, 39, '', 'alisha', 'shahzad ali', '11-SEP-1996', 'Female', 'Pakistani', 'Federal', 'Punjab', 'no', '6110198527482', '03360112333', 'alisha@gmail.com', 'no', 'no'),
+(9, 41, '', 'nasir', 'altaf ali khan', '8-OCT-1996', 'Male', 'Pakistani', 'Federal', 'Punjab', 'no', '6110189737762', '03005524226', 'nasir@gmail.com', 'no', 'no'),
+(10, 42, '', 'sahir', 'alim khan', '11-SEP-1996', 'Male', 'Pakistani', 'Federal', 'Punjab', 'no', '6110198527482', '03005524226', 'sahir@gmail.com', 'no', 'no'),
+(11, 43, '', 'anum', 'ali khan', '9-JUN-1996', 'Female', 'Pakistani', 'Federal', 'Punjab', 'no', '6110189737762', '03005524226', 'anum@gmail.com', 'no', 'no'),
+(12, 44, '', 'amir', 'shokat ali', '12-OCT-1996', 'Male', 'Pakistani', 'Federal', 'Punjab', 'no', '6110198527482', '03360112333', 'amir@gmail.com', 'no', 'no'),
+(13, 45, '', 'husna', 'hasan ali', '11-SEP-1996', 'Female', 'Pakistani', 'Lahore', 'Federal', 'no', '6110189737762', '03360112333', 'husna@gmail.com', 'no', 'no'),
+(14, 46, '', 'preesa', 'fiayaz siddiqui', '10-AUG-1996', 'Female', 'Pakistani', 'Lahore', 'Federal', 'no', '6110198527482', '03360112333', 'preesa@gmail.com', 'no', 'no'),
+(15, 47, '', 'ayyan', 'shokat ali', '11-JUN-1996', 'Male', 'Pakistani', 'Lahore', 'Federal', 'no', '6110189737762', '03005524226', 'ayyan@gmail.com', 'no', 'no'),
+(16, 48, '', 'sameer', 'shokat ali', '13-SEP-1996', 'Male', 'Pakistani', 'Jhelum', 'Federal', 'no', '6110198527482', '03360112333', 'sameer@gmail.com', 'no', 'no'),
+(17, 49, '', 'alia', 'fiayaz siddiqui', '11-AUG-1996', 'Female', 'Pakistani', 'Jhang', 'Federal', 'no', '6110198527482', '03005524226', 'alia@gmail.com', 'no', 'no'),
+(18, 50, '', 'ayesha', 'jamil siddiqui', '12-JUL-1996', 'Female', 'Pakistani', 'Lahore', 'Federal', 'no', '6110178546748', '03005524226', 'ayesha@gmail.com', 'no', 'no'),
+(19, 51, '', 'sidra', 'altaf ali khan', '10-OCT-1996', 'Female', 'Pakistani', 'Attock', 'Federal', 'no', '6110189737762', '03360112333', 'sidra@gmail.com', 'no', 'no'),
+(20, 52, '', 'sameena', 'fiayaz siddiqui', '1-MAR-1996', 'Female', 'Pakistani', 'Attock', 'Federal', 'no', '6110178546748', '03005524226', 'sameena@gmail.com', 'no', 'no');
 
 -- --------------------------------------------------------
 
