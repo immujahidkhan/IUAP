@@ -113,6 +113,18 @@ include "assets/main_header.php";
 	?>
 	</td>
 	</tr>
+	<tr>
+	<td>
+	<?php
+	if(!empty($Details['starting_and_closing']))
+	{	
+	$string = $Details['starting_and_closing'];
+	$pieces = explode("_", $string);
+	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Fata";
+	}
+	?>
+	</td>
+	</tr>
 	 </tbody>
   </table>
 </div>

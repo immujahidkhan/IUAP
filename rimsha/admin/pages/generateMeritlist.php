@@ -700,6 +700,7 @@ $course_enrolled_query = $class->fetchdata("SELECT * FROM meritlist WHERE merit_
 ?>
 <div class="row">
 <div class="col-md-12">
+<a class="btn btn-info" href="Genearate_Reports.php?pId=<?php echo $_GET['pId'];?>&merit_list_no=<?php echo $_GET['page'];?>">Genearate Reports</a>
 
 <?php
 include "generateMeritlistSeatsCount.php";
@@ -726,7 +727,7 @@ include "generateMeritlistSeatsCount.php";
 		{
 			if($reports_counts>0)
 {
-	$last = $course_enrolled_query_punjab->rowCount()-1;
+	$last = $course_enrolled_query->rowCount()-1;
 	if($i==0)
 	{
 	echo $starting1 = "Starting Merit ".$data_course_enrolled_query['s_aggregate'];
