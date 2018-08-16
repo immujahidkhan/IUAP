@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2018 at 10:45 PM
+-- Generation Time: Aug 16, 2018 at 04:28 AM
 -- Server version: 5.6.16
 -- PHP Version: 5.5.11
 
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `admin_about` (
   `user_id` int(255) NOT NULL,
   `about` blob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `admin_about`
@@ -44,7 +44,8 @@ INSERT INTO `admin_about` (`id`, `p_id`, `user_id`, `about`) VALUES
 (3, 4, 4, 0x686868),
 (6, 7, 4, 0x61626f7574),
 (8, 9, 4, 0x53454c454354202a2046524f4d206061646d696e5f61626f75746020574845524520705f6964203d2039),
-(9, 8, 4, 0x6368656d6973747274);
+(9, 8, 4, 0x6368656d6973747274),
+(10, 10, 53, 0x61626f7574206273206368656d6973727479);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `admin_a_schedule` (
   `test_time` varchar(255) NOT NULL,
   `merit_date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `admin_a_schedule`
@@ -72,7 +73,8 @@ INSERT INTO `admin_a_schedule` (`id`, `p_id`, `user_id`, `admission_date`, `test
 (1, 1, 4, '2018-08-31', '2018-07-21', 'Faisalabad', '13:03', '2018-08-30'),
 (2, 3, 4, '2018-07-18', '2018-07-21', 'Faisalabad', '21:12', '2018-08-22'),
 (6, 7, 4, '2018-08-26', '', '', '', '2018-07-31'),
-(7, 8, 4, '2018-08-12', '', '', '', '2018-08-13');
+(7, 8, 4, '2018-08-12', '', '', '', '2018-08-13'),
+(8, 10, 53, '2018-08-01', '', '', '', '2018-08-07');
 
 -- --------------------------------------------------------
 
@@ -95,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `admin_criteria_list` (
   `sports` varchar(255) NOT NULL,
   `handicaped` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `admin_criteria_list`
@@ -103,9 +105,10 @@ CREATE TABLE IF NOT EXISTS `admin_criteria_list` (
 
 INSERT INTO `admin_criteria_list` (`id`, `p_id`, `user_id`, `t_seats`, `quota`, `punjab`, `sindh`, `kpk`, `bal`, `fed`, `fata`, `sports`, `handicaped`) VALUES
 (1, 1, 4, '10', 'Quota System', '5', '5', '', '', '', '', '', ''),
-(2, 3, 4, '2', 'Quota System', '1', '1', '', '', '', '', '', ''),
+(2, 3, 4, '2', 'Quota System', '1', '1', '1', '1', '', '', '', ''),
 (6, 7, 4, '2', 'Quota System', '1', '1', '', '', '', '', '', ''),
-(7, 8, 4, '10', 'Quota System', '5', '', '', '', '5', '', '', '');
+(7, 8, 4, '10', 'Quota System', '5', '', '', '', '5', '', '', ''),
+(8, 10, 53, '10', 'No Quota System', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -137,7 +140,7 @@ CREATE TABLE IF NOT EXISTS `admin_e_criteria` (
   `aet` varchar(255) NOT NULL,
   `ait` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `admin_e_criteria`
@@ -148,7 +151,8 @@ INSERT INTO `admin_e_criteria` (`id`, `p_id`, `user_id`, `program`, `matric_mark
 (7, 3, 4, 'PHD', '50%', '50%', '', '', '', 'openMerit', '', '', '', '', '75', '15', '', '', '', '', '30', '5'),
 (8, 1, 4, 'BS/MSC', '50%', '50%', '50%', '', '', 'enteryTest', '', '', '', '', '75', '15', '', '', '', '', '5', '5'),
 (10, 7, 4, 'PHD', '45', '45', '45', '45', '45', 'openMerit', '55', '', '', '555', '75', '10', '5', '', '', '', '5', '5'),
-(11, 8, 4, 'BS/MSC', '30', '30', '30', '', '', 'openMerit', '', '', '', '', '50', '40', '', '', '', '', '10', '');
+(11, 8, 4, 'BS/MSC', '30', '30', '30', '', '', 'openMerit', '', '', '', '', '50', '40', '', '', '', '', '10', ''),
+(12, 10, 53, 'BS/MSC', '20%', '20%', '20%', '', '', 'openMerit', '', '', '', '', '40', '40', '', '', '', '20', '', '');
 
 -- --------------------------------------------------------
 
@@ -162,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `admin_late_admission` (
   `user_id` int(255) NOT NULL,
   `late_title` blob NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `admin_late_admission`
@@ -173,7 +177,8 @@ INSERT INTO `admin_late_admission` (`id`, `p_id`, `user_id`, `late_title`) VALUE
 (2, 3, 4, 0x506f6c696379),
 (5, 6, 4, 0x706f6c696379),
 (6, 7, 4, 0x706f6c696379),
-(7, 8, 4, 0x61646d697373696f6e20706f6c696379);
+(7, 8, 4, 0x61646d697373696f6e20706f6c696379),
+(8, 10, 53, 0x706f6c6963792e2e2e2e2e);
 
 -- --------------------------------------------------------
 
@@ -198,7 +203,7 @@ CREATE TABLE IF NOT EXISTS `admin_p_detail` (
   `status` varchar(255) NOT NULL,
   `p_status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `admin_p_detail`
@@ -209,7 +214,8 @@ INSERT INTO `admin_p_detail` (`id`, `p_id`, `user_id`, `degreeLevel`, `uni_name`
 (4, 3, 4, 'BS', 'gcuf', 'Bs Information technology', 'Computer Science', 'Faisalabad Main Campus', '4 Years', '4 Years', '8', '3', 'Muhammad Zahid Tufail-CV.pdf', '1', 'Completed'),
 (6, 7, 4, 'MS', 'gcuf', 'Physics', 'physics', 'fsd', '4 years', '4 years', '8', '20', 'Documentation1.docx', '1', 'Completed'),
 (7, 9, 4, 'MS', 'gcuf', 'Biology', 'op', 'o', 'po', 'po', 'p', 'op', 'Documentation.docx', '1', ''),
-(8, 8, 4, 'BS', 'gcuf', 'Bs Chemistry', 'chemistry', 'islamabad', '6 years', '4 years', '12', '32', 'f10.txt', '1', 'Completed');
+(8, 8, 4, 'BS', 'gcuf', 'Bs Chemistry', 'chemistry', 'islamabad', '6 years', '4 years', '12', '32', 'f10.txt', '1', 'Completed'),
+(9, 10, 53, 'BS', 'NUST', 'BS chemistry', 'chemistry', 'islamabad', '6 years', '4 years', '82', '32', 'f10.txt', '1', 'Completed');
 
 -- --------------------------------------------------------
 
@@ -253,7 +259,7 @@ CREATE TABLE IF NOT EXISTS `course_enrolled` (
   `by_` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=69 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=81 ;
 
 --
 -- Dumping data for table `course_enrolled`
@@ -276,7 +282,19 @@ INSERT INTO `course_enrolled` (`id`, `p_id`, `user_id`, `cnic`, `marks`, `E_tota
 (65, 8, 49, '6110198527482', '', '', '', '', '4', ''),
 (66, 8, 50, '6110178546748', '', '', '', '', '4', ''),
 (67, 8, 51, '6110189737762', '', '', '', '', '4', ''),
-(68, 8, 52, '6110178546748', '', '', '', '', '4', '');
+(68, 8, 52, '6110178546748', '', '', '', '', '4', ''),
+(69, 10, 52, '6110178546748', '', '', '', '', '53', ''),
+(70, 10, 38, '6110198527482', '', '', '', '', '53', ''),
+(71, 10, 39, '6110198527482', '', '', '', '', '53', ''),
+(72, 10, 41, '6110189737762', '', '', '', '', '53', ''),
+(73, 10, 49, '6110198527482', '', '', '', '', '53', ''),
+(74, 10, 48, '6110198527482', '', '', '', '', '53', ''),
+(75, 10, 46, '6110198527482', '', '', '', '', '53', ''),
+(76, 10, 51, '6110189737762', '', '', '', '', '53', ''),
+(77, 10, 47, '6110189737762', '', '', '', '', '53', ''),
+(78, 10, 50, '6110178546748', '', '', '', '', '53', ''),
+(79, 10, 45, '6110189737762', '', '', '', '', '53', ''),
+(80, 10, 44, '6110198527482', '', '', '', '', '53', '');
 
 -- --------------------------------------------------------
 
@@ -298,30 +316,42 @@ CREATE TABLE IF NOT EXISTS `meritlist` (
   `status` varchar(255) NOT NULL,
   `merit_list_no` int(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `meritlist`
 --
 
 INSERT INTO `meritlist` (`id`, `p_name`, `p_id`, `s_email`, `s_name`, `s_cnic`, `s_domicile`, `s_aggregate`, `admin_id`, `s_id`, `status`, `merit_list_no`) VALUES
-(1, 'Bs Chemistry', 8, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '51.791', 4, 9, '', 0),
-(2, 'Bs Chemistry', 8, 'jk3@gmail.com', 'jk3', '33098978787878', 'Punjab', '75.104', 4, 11, '', 0),
-(3, 'Bs Chemistry', 8, 'izza@gmail.com', 'izza', '6110198527482', 'Punjab', '75.654', 4, 38, '', 0),
-(4, 'Bs Chemistry', 8, 'alisha@gmail.com', 'alisha', '6110198527482', 'Punjab', '65.721', 4, 39, '', 0),
-(5, 'Bs Chemistry', 8, 'nasir@gmail.com', 'nasir', '6110189737762', 'Punjab', '78.864', 4, 41, '', 0),
-(6, 'Bs Chemistry', 8, 'sahir@gmail.com', 'sahir', '6110198527482', 'Punjab', '71.045', 4, 42, '', 0),
-(7, 'Bs Chemistry', 8, 'anum@gmail.com', 'anum', '6110189737762', 'Punjab', '73.358', 4, 43, '', 0),
-(8, 'Bs Chemistry', 8, 'amir@gmail.com', 'amir', '6110198527482', 'Punjab', '67.055', 4, 44, '', 0),
-(9, 'Bs Chemistry', 8, 'husna@gmail.com', 'husna', '6110189737762', 'Federal', '70.939', 4, 45, '', 0),
-(10, 'Bs Chemistry', 8, 'preesa@gmail.com', 'preesa', '6110198527482', 'Federal', '73.289', 4, 46, '', 0),
-(11, 'Bs Chemistry', 8, 'ayyan@gmail.com', 'ayyan', '6110189737762', 'Federal', '74.771', 4, 47, '', 0),
-(12, 'Bs Chemistry', 8, 'sameer@gmail.com', 'sameer', '6110198527482', 'Federal', '79.39', 4, 48, '', 0),
-(13, 'Bs Chemistry', 8, 'alia@gmail.com', 'alia', '6110198527482', 'Federal', '72.996', 4, 49, '', 0),
-(14, 'Bs Chemistry', 8, 'ayesha@gmail.com', 'ayesha', '6110178546748', 'Federal', '70.883', 4, 50, '', 0),
-(15, 'Bs Chemistry', 8, 'sidra@gmail.com', 'sidra', '6110189737762', 'Federal', '80.844', 4, 51, '', 0),
-(16, 'Bs Chemistry', 8, 'sameena@gmail.com', 'sameena', '6110178546748', 'Federal', '80.844', 4, 52, '', 0),
-(17, 'Bs Computer Science', 1, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '', 4, 9, '', 0);
+(1, 'Bs Chemistry', 8, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '51.791', 4, 9, '', 2),
+(2, 'Bs Chemistry', 8, 'jk3@gmail.com', 'jk3', '33098978787878', 'Punjab', '75.104', 4, 11, '', 1),
+(3, 'Bs Chemistry', 8, 'izza@gmail.com', 'izza', '6110198527482', 'Punjab', '75.654', 4, 38, '', 1),
+(4, 'Bs Chemistry', 8, 'alisha@gmail.com', 'alisha', '6110198527482', 'Punjab', '65.721', 4, 39, '', 2),
+(5, 'Bs Chemistry', 8, 'nasir@gmail.com', 'nasir', '6110189737762', 'Punjab', '78.864', 4, 41, '', 1),
+(6, 'Bs Chemistry', 8, 'sahir@gmail.com', 'sahir', '6110198527482', 'Punjab', '71.045', 4, 42, '', 1),
+(7, 'Bs Chemistry', 8, 'anum@gmail.com', 'anum', '6110189737762', 'Punjab', '73.358', 4, 43, '', 1),
+(8, 'Bs Chemistry', 8, 'amir@gmail.com', 'amir', '6110198527482', 'Punjab', '67.055', 4, 44, '', 2),
+(9, 'Bs Chemistry', 8, 'husna@gmail.com', 'husna', '6110189737762', 'Federal', '70.939', 4, 45, '', 2),
+(10, 'Bs Chemistry', 8, 'preesa@gmail.com', 'preesa', '6110198527482', 'Federal', '73.289', 4, 46, '', 1),
+(11, 'Bs Chemistry', 8, 'ayyan@gmail.com', 'ayyan', '6110189737762', 'Federal', '74.771', 4, 47, '', 1),
+(12, 'Bs Chemistry', 8, 'sameer@gmail.com', 'sameer', '6110198527482', 'Federal', '79.39', 4, 48, '', 1),
+(13, 'Bs Chemistry', 8, 'alia@gmail.com', 'alia', '6110198527482', 'Federal', '72.996', 4, 49, '', 2),
+(14, 'Bs Chemistry', 8, 'ayesha@gmail.com', 'ayesha', '6110178546748', 'Federal', '70.883', 4, 50, '', 2),
+(15, 'Bs Chemistry', 8, 'sidra@gmail.com', 'sidra', '6110189737762', 'Federal', '80.844', 4, 51, '', 1),
+(16, 'Bs Chemistry', 8, 'sameena@gmail.com', 'sameena', '6110178546748', 'Federal', '80.844', 4, 52, '', 1),
+(17, 'Bs Computer Science', 1, 'jk1@gmail.com', 'jk1', '33098978787878', 'Federal', '', 4, 9, '', 0),
+(18, 'BS chemistry', 10, 'sameena@gmail.com', 'sameena', '6110178546748', 'Federal', '71.33', 53, 52, '', 1),
+(19, 'BS chemistry', 10, 'izza@gmail.com', 'izza', '6110198527482', 'Punjab', '67.177', 53, 38, '', 1),
+(20, 'BS chemistry', 10, 'alisha@gmail.com', 'alisha', '6110198527482', 'Punjab', '58.388', 53, 39, '', 2),
+(21, 'BS chemistry', 10, 'nasir@gmail.com', 'nasir', '6110189737762', 'Punjab', '69.782', 53, 41, '', 1),
+(22, 'BS chemistry', 10, 'alia@gmail.com', 'alia', '6110198527482', 'Federal', '64.615', 53, 49, '', 1),
+(23, 'BS chemistry', 10, 'sameer@gmail.com', 'sameer', '6110198527482', 'Federal', '69.875', 53, 48, '', 1),
+(24, 'BS chemistry', 10, 'preesa@gmail.com', 'preesa', '6110198527482', 'Federal', '64.937', 53, 46, '', 1),
+(25, 'BS chemistry', 10, 'sidra@gmail.com', 'sidra', '6110189737762', 'Federal', '71.33', 53, 51, '', 1),
+(26, 'BS chemistry', 10, 'ayyan@gmail.com', 'ayyan', '6110189737762', 'Federal', '65.38', 53, 47, '', 1),
+(27, 'BS chemistry', 10, 'ayesha@gmail.com', 'ayesha', '6110178546748', 'Federal', '63.397', 53, 50, '', 1),
+(28, 'BS chemistry', 10, 'husna@gmail.com', 'husna', '6110189737762', 'Federal', '63.406', 53, 45, '', 1),
+(29, 'BS chemistry', 10, 'amir@gmail.com', 'amir', '6110198527482', 'Punjab', '59.455', 53, 44, '', 2);
 
 -- --------------------------------------------------------
 
@@ -336,7 +366,7 @@ CREATE TABLE IF NOT EXISTS `notification` (
   `fromNot` varchar(255) NOT NULL,
   `p_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
 
 --
 -- Dumping data for table `notification`
@@ -361,7 +391,22 @@ INSERT INTO `notification` (`id`, `title`, `toNot`, `fromNot`, `p_id`) VALUES
 (55, 'Yours Entry Test Marks 94 are added for program Bs Chemistry', '46', '4', '8'),
 (56, 'Yours Entry Test Marks 94 are added for program Bs Chemistry', '46', '4', '8'),
 (57, 'Yours Entry Test Marks 94 are added for program Bs Chemistry', '46', '4', '8'),
-(58, 'Yours Entry Test Marks 94 are added for program Bs Chemistry', '46', '4', '8');
+(58, 'Yours Entry Test Marks 94 are added for program Bs Chemistry', '46', '4', '8'),
+(59, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(60, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(61, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(62, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(63, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(64, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(65, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(66, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(67, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(68, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(69, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(70, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(71, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(72, 'You have successfully applied to  BS chemistry program.', '44', '53', '10'),
+(73, 'New Student enroll to your programs', '53', '44', '10');
 
 -- --------------------------------------------------------
 
@@ -377,7 +422,7 @@ CREATE TABLE IF NOT EXISTS `programs` (
   `p_status` varchar(255) NOT NULL,
   `fees` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Dumping data for table `programs`
@@ -388,7 +433,38 @@ INSERT INTO `programs` (`id`, `title`, `user_id`, `status`, `p_status`, `fees`) 
 (3, 'Bs Information technology', 4, 1, 'Completed', '1000'),
 (7, 'Physics', 4, 1, 'Completed', '89000'),
 (8, 'Bs Chemistry', 4, 1, 'Completed', 'fee'),
-(9, 'Biology', 4, 0, '', '');
+(9, 'Biology', 4, 0, '', ''),
+(10, 'BS chemistry', 53, 1, 'Completed', 'fee updates........');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reports`
+--
+
+CREATE TABLE IF NOT EXISTS `reports` (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `p_id` varchar(255) NOT NULL,
+  `admin_id` varchar(255) NOT NULL,
+  `merit_list_no` varchar(255) NOT NULL,
+  `starting_and_closing` varchar(255) NOT NULL,
+  `starting_n_end_punjab` varchar(255) NOT NULL,
+  `starting_n_end_sindh` varchar(255) NOT NULL,
+  `starting_n_end_kpk` varchar(255) NOT NULL,
+  `starting_n_end_bal` varchar(255) NOT NULL,
+  `starting_n_end_fed` varchar(255) NOT NULL,
+  `starting_n_end_fata` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `reports`
+--
+
+INSERT INTO `reports` (`id`, `p_id`, `admin_id`, `merit_list_no`, `starting_and_closing`, `starting_n_end_punjab`, `starting_n_end_sindh`, `starting_n_end_kpk`, `starting_n_end_bal`, `starting_n_end_fed`, `starting_n_end_fata`) VALUES
+(1, '8', '4', '1', '', 'Starting Merit 78.864_Closing Merit 71.045', '', '', '', 'Starting Merit 80.844_Closing Merit 73.289', ''),
+(2, '8', '4', '2', '', '97', '', '', '', '', ''),
+(3, '1', '4', '1', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -596,7 +672,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `uni_name` varchar(255) NOT NULL,
   `created_date` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=53 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
 
 --
 -- Dumping data for table `users`
@@ -650,7 +726,8 @@ INSERT INTO `users` (`id`, `name`, `email`, `pass`, `status`, `role`, `request`,
 (49, 'alia', 'alia@gmail.com', '123', 'active', 'student', '', '', '11-Aug-2018 02:01:35pm'),
 (50, 'ayesha', 'ayesha@gmail.com', '123', 'active', 'student', '', '', '11-Aug-2018 02:03:49pm'),
 (51, 'sidra', 'sidra@gmail.com', '123', 'active', 'student', '', '', '11-Aug-2018 02:09:00pm'),
-(52, 'sameena', 'sameena@gmail.com', '123', 'active', 'student', '', '', '11-Aug-2018 02:10:44pm');
+(52, 'sameena', 'sameena@gmail.com', '123', 'active', 'student', '', '', '11-Aug-2018 02:10:44pm'),
+(53, 'nustadmin', 'nustadmin@gmail.com', '123', 'active', 'admin', '', 'NUST', '13-Aug-2018 05:31:46pm');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
