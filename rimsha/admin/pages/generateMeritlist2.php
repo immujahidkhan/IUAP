@@ -836,25 +836,9 @@ echo "<span><span class='badge badge-warning'>$DataSeats[handicaped]</span> Hand
     <tbody>
 		<?php
 		//echo $course_enrolled_query->rowCount();
-		$i=0;
 		while($data_course_enrolled_query=$course_enrolled_query->fetch(PDO::FETCH_ASSOC))
 		{
-if($reports_counts>0)
-{
-	$last = $course_enrolled_query->rowCount()-1;
-	if($i==0)
-	{
-	echo $starting1 = "Starting Merit ".$data_course_enrolled_query['s_aggregate'];
-	}
-	$starting2 = "";
-	if($i==$last){
-	echo $starting2 = "Closing Merit ".$data_course_enrolled_query['s_aggregate'];
-	}
-	$i++;
-$starting_and_closing = $starting1."_".$starting2;
-$class->insert("UPDATE `reports` SET `starting_and_closing`='$starting_and_closing' where  `p_id`='$_GET[pId]' and merit_list_no = '$_GET[page]' and `admin_id`='$user_id' ");
-}
-?>
+		?>
 									<tr class="odd gradeX">
                                         
 										<td title="<?php echo $data_course_enrolled_query['s_id'];?>"><?php echo $p_name = $data_course_enrolled_query['p_name'];?></td>

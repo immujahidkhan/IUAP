@@ -41,90 +41,100 @@ include "assets/main_header.php";
       </tr>
     </thead>
     <tbody>
-	<tr>
-	<td>
 	<?php 
-	if(!empty($Details['starting_n_end_punjab']))
-	{
-	$string = $Details['starting_n_end_punjab'];
-	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Punjab";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
-	if(!empty($Details['starting_n_end_sindh']))
-	{	
-	$string = $Details['starting_n_end_sindh'];
-	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Sindh";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
-	if(!empty($Details['starting_n_end_kpk']))
-	{	
-	$string = $Details['starting_n_end_kpk'];
-		$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of KPK";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
-	if(!empty($Details['starting_n_end_bal']))
-	{	
-	$string = $Details['starting_n_end_bal'];
-	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Balochistan";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
-	if(!empty($Details['starting_n_end_fed']))
-	{	
-	$string = $Details['starting_n_end_fed'];
-	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Federal";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
-	if(!empty($Details['starting_n_end_fata']))
-	{	
-	$string = $Details['starting_n_end_fata'];
-	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Fata";
-	}
-	?>
-	</td>
-	</tr>
-	<tr>
-	<td>
-	<?php
 	if(!empty($Details['starting_and_closing']))
-	{	
+	{?>
+	<tr>
+	<td>
+	<?php
 	$string = $Details['starting_and_closing'];
 	$pieces = explode("_", $string);
-	echo "Starting merit is ".$pieces[0]." and closing merit is ".$pieces[1]." of Fata";
-	}
+	echo $pieces[0]." and ".$pieces[1]." ";
 	?>
 	</td>
 	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_punjab']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_punjab'];
+	$pieces = explode("_", $string);
+	echo $pieces[0]." and ".$pieces[1]." of Punjab";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_sindh']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_sindh'];
+	$pieces = explode("_", $string);
+	echo $pieces[0]." and  ".$pieces[1]." of Sindh";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_kpk']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_kpk'];
+		$pieces = explode("_", $string);
+	echo $pieces[0]." and ".$pieces[1]." of KPK";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_bal']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_bal'];
+	$pieces = explode("_", $string);
+	echo $pieces[0]." and  ".$pieces[1]." of Balochistan";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_fed']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_fed'];
+	$pieces = explode("_", $string);
+	echo $pieces[0]." and ".$pieces[1]." of Federal";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	if(!empty($Details['starting_n_end_fata']))
+	{?>
+	<tr>
+	<td>
+	<?php
+	$string = $Details['starting_n_end_fata'];
+	$pieces = explode("_", $string);
+	echo $pieces[0]." and ".$pieces[1]." of Fata";
+	?>
+	</td>
+	</tr>
+	<?php
+	}
+	?>
+	
 	 </tbody>
   </table>
 </div>

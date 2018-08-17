@@ -59,7 +59,8 @@ while($rows=$query->fetch(PDO::FETCH_ASSOC))
             $pdf->Cell(50,7,$email);
             $pdf->Cell(13,7,$status);
             $pdf->Cell(24,7,$role); 
-			$pdf->Cell(50,7,$created_date); 
+			$image1 = "http://192.168.0.100/hallbookingapp/uploads/1uqQUKqYG8n.png";
+			$pdf->Cell(40, 40, $pdf->Image($image1, $pdf->GetX(), $pdf->GetY(), 33.78), 0, 0, 'L', false ); 
             $pdf->Ln(); 
 }
 $pdf->Output();

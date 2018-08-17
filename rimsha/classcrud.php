@@ -13,7 +13,7 @@ public function fetchdata($sql)
 	$query= $this->db->prepare($sql);
 	$query->execute();
 	return $query;
-	}
+}
 
 
 public function redirect($sql)
