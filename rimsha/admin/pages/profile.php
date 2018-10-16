@@ -81,6 +81,13 @@ if(!empty($JoinResult['ms_obtained']))
 ?><a href="#" class="list-group-item"><?php echo "MS Marks :".$JoinResult['ms_obtained']." Out Of ".$JoinResult['ms_max_marks']."</a>";
 }
 ?>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img1'];?>" class="list-group-item">Front Cnic</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img2'];?>" class="list-group-item">Back Cnic</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img3'];?>" class="list-group-item">SSC</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img4'];?>" class="list-group-item">HSSC</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img5'];?>" class="list-group-item">MSc</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img6'];?>" class="list-group-item">MPhill</a>
+<a href="http://localhost/rimsha/images/<?php echo $JoinResult['img7'];?>" class="list-group-item">NTS</a>
 </div>
 </div>
 
