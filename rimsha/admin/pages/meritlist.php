@@ -164,7 +164,7 @@ include "assets/main_header.php";
 									?>
 									<tr class="odd gradeX">
                                         <td><?php echo $p_name = $dataP['uni_program'];?></td>
-                                        <td><?php echo $s_name = $Userdata['name'];?></td>
+                                        <td><a target="_blank" href="profile.php?user_id=<?php echo $Userdata['id']; ?>"> <?php echo $s_name = $Userdata['name'];?></a></td>
                                         <td><?php echo $s_email = $Userdata['email'];?></td>
 										<td><?php echo $s_cnic = $data_course_enrolled_query['cnic'];?></td>
 										<td><?php echo $s_domicile = $CninData['domicileDistrict'];?></td>
